@@ -1,6 +1,7 @@
 #ifndef VOXEL_WINDOW_H
 #define VOXEL_WINDOW_H
 #include "GLFW/glfw3.h"
+namespace VoxelEngine {
 class VoxelWindow {
  private:
   GLFWwindow *window;
@@ -19,4 +20,5 @@ class VoxelWindow {
 
   void show();
 };
+}  // namespace VoxelEngine
 #endif

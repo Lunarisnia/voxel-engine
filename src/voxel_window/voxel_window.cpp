@@ -6,6 +6,8 @@
 #include <iostream>
 #include <memory>
 
+using namespace VoxelEngine;
+
 std::shared_ptr<InputManager> inputManager = std::make_shared<InputManager>();
 
 void VoxelWindow::framebuffer_resize_callback(GLFWwindow *window, int newWidth,

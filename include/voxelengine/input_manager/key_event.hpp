@@ -1,5 +1,6 @@
 #ifndef KEY_EVENT_H
 #define KEY_EVENT_H
+namespace VoxelEngine {
 class KeyEvent {
  public:
   int key;
@@ -9,4 +10,5 @@ class KeyEvent {
 
   KeyEvent();
 };
+}  // namespace VoxelEngine
 #endif
