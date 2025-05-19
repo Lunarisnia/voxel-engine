@@ -4,20 +4,21 @@
 namespace VoxelEngine {
 class VoxelWindow {
  private:
-  GLFWwindow *window;
+  static GLFWwindow *window;
 
   static void framebuffer_resize_callback(GLFWwindow *window, int newWidth,
                                           int newHeight);
   static void error_callback(int code, const char *description);
 
  public:
-  const char *title;
-  int width, height;
-  VoxelWindow(int width, int height, const char *title);
-  ~VoxelWindow();
+  static const char *title;
+  static int width, height;
 
-  void show();
-  void registerKeyCallback(GLFWkeyfun callback);
+  static void initialize(int width, int height, const char *title);
+  static void render();
+  static void registerKeyCallback(GLFWkeyfun callback);
+
+  ~VoxelWindow();
 };
 }  // namespace VoxelEngine
 #endif

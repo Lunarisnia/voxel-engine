@@ -20,8 +20,12 @@ void VoxelWindow::registerKeyCallback(GLFWkeyfun callback) {
   glfwSetKeyCallback(window, callback);
 }
 
-VoxelWindow::VoxelWindow(int width, int height, const char *title)
-    : title(title) {
+GLFWwindow *VoxelWindow::window;
+const char *VoxelWindow::title;
+int VoxelWindow::width;
+int VoxelWindow::height;
+
+void VoxelWindow::initialize(int width, int height, const char *title) {
   glfwSetErrorCallback(error_callback);
 
   glfwInit();
@@ -45,7 +49,7 @@ VoxelWindow::VoxelWindow(int width, int height, const char *title)
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
 }
 
-void VoxelWindow::show() {
+void VoxelWindow::render() {
   GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
   ;
 
