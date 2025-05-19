@@ -1,9 +1,12 @@
 #include "glad/glad.h"
 // Force
+#include "../input_manager/input_manager.hpp"
 #include "GLFW/glfw3.h"
 #include "voxel_window.hpp"
 #include <cstdlib>
 #include <iostream>
+
+InputManager inputManager;
 
 void VoxelWindow::framebuffer_resize_callback(GLFWwindow *window, int newWidth,
                                               int newHeight) {
@@ -16,10 +19,7 @@ void VoxelWindow::error_callback(int code, const char *description) {
 
 void VoxelWindow::key_callback(GLFWwindow *window, int key, int scancode,
                                int action, int mods) {
-  std::cout << "Key: " << key << std::endl;
-  std::cout << "Scancode: " << scancode << std::endl;
-  std::cout << "Action: " << action << std::endl;
-  std::cout << "Mods: " << mods << std::endl;
+  inputManager.pressKey(key, scancode, action, mods);
 }
 
 VoxelWindow::VoxelWindow(int width, int height, const char *title)
