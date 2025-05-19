@@ -5,8 +5,9 @@
 #include "voxel_window.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 
-InputManager inputManager;
+std::shared_ptr<InputManager> inputManager = std::make_shared<InputManager>();
 
 void VoxelWindow::framebuffer_resize_callback(GLFWwindow *window, int newWidth,
                                               int newHeight) {
@@ -19,7 +20,7 @@ void VoxelWindow::error_callback(int code, const char *description) {
 
 void VoxelWindow::key_callback(GLFWwindow *window, int key, int scancode,
                                int action, int mods) {
-  inputManager.pressKey(key, scancode, action, mods);
+  inputManager->pressKey(key, scancode, action, mods);
 }
 
 VoxelWindow::VoxelWindow(int width, int height, const char *title)
