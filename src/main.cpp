@@ -1,6 +1,7 @@
-#include "voxelengine/voxel_window/voxel_window.hpp"
+#include "voxelengine/voxel_engine/voxel_engine.hpp"
+
 int main() {
-  VoxelEngine::VoxelWindow voxelWindow(800, 640, "Voxel Window");
-  voxelWindow.show();
+  VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");
+  voxelEngine.run();
   return 0;
 }

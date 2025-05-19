@@ -1,6 +1,9 @@
 # Add the source files
 add_executable(${PROJECT_NAME} 
 	main.cpp 
+	# VoxelEngine
+	voxel_engine/voxel_engine.cpp
+
 	# VoxelWindow
 	voxel_window/voxel_window.cpp
 

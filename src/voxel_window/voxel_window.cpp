@@ -5,7 +5,6 @@
 #include "voxelengine/input_manager/input_manager.hpp"
 #include <cstdlib>
 #include <iostream>
-#include <memory>
 
 using namespace VoxelEngine;
 
