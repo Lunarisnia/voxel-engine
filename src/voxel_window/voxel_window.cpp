@@ -2,13 +2,10 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
-#include "voxelengine/input_manager/input_manager.hpp"
 #include <cstdlib>
 #include <iostream>
 
 using namespace VoxelEngine;
-
-std::shared_ptr<InputManager> inputManager = std::make_shared<InputManager>();
 
 void VoxelWindow::framebuffer_resize_callback(GLFWwindow *window, int newWidth,
                                               int newHeight) {
@@ -19,9 +16,8 @@ void VoxelWindow::error_callback(int code, const char *description) {
   std::cout << "ERROR::GLFW(" << code << "): " << description << std::endl;
 }
 
-void VoxelWindow::key_callback(GLFWwindow *window, int key, int scancode,
-                               int action, int mods) {
-  inputManager->pressKey(key, scancode, action, mods);
+void VoxelWindow::registerKeyCallback(GLFWkeyfun callback) {
+  glfwSetKeyCallback(window, callback);
 }
 
 VoxelWindow::VoxelWindow(int width, int height, const char *title)
@@ -47,7 +43,6 @@ VoxelWindow::VoxelWindow(int width, int height, const char *title)
   }
 
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
-  glfwSetKeyCallback(window, key_callback);
 }
 
 void renderDummyTriangle() {

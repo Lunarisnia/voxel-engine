@@ -9,8 +9,6 @@ class VoxelWindow {
   static void framebuffer_resize_callback(GLFWwindow *window, int newWidth,
                                           int newHeight);
   static void error_callback(int code, const char *description);
-  static void key_callback(GLFWwindow *window, int key, int scancode,
-                           int action, int mods);
 
  public:
   const char *title;
@@ -19,6 +17,7 @@ class VoxelWindow {
   ~VoxelWindow();
 
   void show();
+  void registerKeyCallback(GLFWkeyfun callback);
 };
 }  // namespace VoxelEngine
 #endif
