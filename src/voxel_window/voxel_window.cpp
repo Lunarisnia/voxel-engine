@@ -1,8 +1,7 @@
 #include "glad/glad.h"
-// Force
-#include "../input_manager/input_manager.hpp"
+#include "voxelengine/voxel_window/voxel_window.hpp"
 #include "GLFW/glfw3.h"
-#include "voxel_window.hpp"
+#include "voxelengine/input_manager/input_manager.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <memory>

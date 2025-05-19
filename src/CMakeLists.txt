@@ -9,5 +9,8 @@ add_executable(${PROJECT_NAME}
 	input_manager/input_manager.cpp
 )
 
+# inlcude
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
 # Link to vendor
 target_link_libraries(${PROJECT_NAME} vendor)

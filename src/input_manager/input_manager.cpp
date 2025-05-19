@@ -1,4 +1,4 @@
-#include "input_manager.hpp"
+#include "voxelengine/input_manager/input_manager.hpp"
 
 InputManager::InputManager() {}
 
