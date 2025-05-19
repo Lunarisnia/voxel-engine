@@ -1,6 +1,5 @@
 #pragma once
 
-#define KEY_EVENT_H
 namespace VoxelEngine {
 class KeyEvent {
  public:

@@ -10,6 +10,15 @@ add_executable(${PROJECT_NAME}
 	# InputManager
 	input_manager/key_event.cpp
 	input_manager/input_manager.cpp
+
+	# Resource
+	resource/resource.cpp
+
+	# Shader
+	shader/shader.cpp
+
+	# Error handling
+	error_handling/gl_error.cpp
 )
 
 # inlcude
