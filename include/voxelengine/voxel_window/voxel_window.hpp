@@ -1,5 +1,5 @@
-#ifndef VOXEL_WINDOW_H
-#define VOXEL_WINDOW_H
+#pragma once
+
 #include "GLFW/glfw3.h"
 namespace VoxelEngine {
 class VoxelWindow {
@@ -21,4 +21,3 @@ class VoxelWindow {
   ~VoxelWindow();
 };
 }  // namespace VoxelEngine
-#endif

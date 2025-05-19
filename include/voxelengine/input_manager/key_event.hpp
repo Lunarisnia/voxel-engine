@@ -1,4 +1,5 @@
-#ifndef KEY_EVENT_H
+#pragma once
+
 #define KEY_EVENT_H
 namespace VoxelEngine {
 class KeyEvent {
@@ -11,4 +12,3 @@ class KeyEvent {
   KeyEvent();
 };
 }  // namespace VoxelEngine
-#endif

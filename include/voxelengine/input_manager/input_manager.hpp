@@ -1,5 +1,5 @@
-#ifndef INPUT_MANAGER_H
-#define INPUT_MANAGER_H
+#pragma once
+
 #include "GLFW/glfw3.h"
 #include "key_event.hpp"
 namespace VoxelEngine {
@@ -14,4 +14,3 @@ class InputManager {
   static void pressKey(int key, int scancode, int action, int mods);
 };
 }  // namespace VoxelEngine
-#endif

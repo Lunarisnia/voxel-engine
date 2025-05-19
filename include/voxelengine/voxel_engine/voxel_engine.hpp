@@ -1,5 +1,4 @@
-#ifndef VOXEL_ENGINE_H
-#define VOXEL_ENGINE_H
+#pragma once
 namespace VoxelEngine {
 class Engine {
  public:
@@ -8,4 +7,3 @@ class Engine {
   void run();
 };
 }  // namespace VoxelEngine
-#endif
