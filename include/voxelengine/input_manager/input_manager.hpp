@@ -2,10 +2,10 @@
 #define INPUT_MANAGER_H
 #include "key_event.hpp"
 class InputManager {
-private:
+ private:
   KeyEvent keys[349];
 
-public:
+ public:
   InputManager();
 
   void pressKey(int key, int scancode, int action, int mods);

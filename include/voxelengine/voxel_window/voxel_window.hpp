@@ -2,7 +2,7 @@
 #define VOXEL_WINDOW_H
 #include "GLFW/glfw3.h"
 class VoxelWindow {
-private:
+ private:
   GLFWwindow *window;
 
   static void framebuffer_resize_callback(GLFWwindow *window, int newWidth,
@@ -11,7 +11,7 @@ private:
   static void key_callback(GLFWwindow *window, int key, int scancode,
                            int action, int mods);
 
-public:
+ public:
   const char *title;
   int width, height;
   VoxelWindow(int width, int height, const char *title);
