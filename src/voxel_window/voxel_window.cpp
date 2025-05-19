@@ -1,5 +1,6 @@
 #include "glad/glad.h"
 #include "voxelengine/voxel_window/voxel_window.hpp"
+#include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include <cstdlib>
@@ -50,10 +51,25 @@ VoxelWindow::VoxelWindow(int width, int height, const char *title)
   glfwSetKeyCallback(window, key_callback);
 }
 
+void renderDummyTriangle() {
+  GLfloat vertices[] = {
+      0.5f,  0.0f,  0.0f,  //
+      0.5f,  -0.5f, 0.0f,  //
+      -0.5f, -0.5f, 0.0f,
+  };
+
+  GLuint VBO;
+  glGenBuffers(1, &VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+};
+
 void VoxelWindow::show() {
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    renderDummyTriangle();
 
     glfwSwapBuffers(window);
     glfwPollEvents();
