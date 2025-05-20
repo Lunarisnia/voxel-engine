@@ -24,6 +24,9 @@ class Object {
   std::shared_ptr<Type> createComponent(Args... args);
 
   template <class Type>
+  std::shared_ptr<Type> getComponent();
+
+  template <class Type>
   void addComponent(const std::shared_ptr<Type> &component);
 };
 
@@ -45,5 +48,13 @@ std::shared_ptr<Type> Object::createComponent(Args... args) {
 template <class Type>
 void Object::addComponent(const std::shared_ptr<Type> &component) {
   components.push_back(component);
+}
+
+template <class Type>
+std::shared_ptr<Type> Object::getComponent() {
+  for (std::shared_ptr<Component> &comp : components) {
+    // TODO: Make sure its a child of component
+    // TODO: see if any is matching one of this component
+  }
 }
 }  // namespace VoxelEngine

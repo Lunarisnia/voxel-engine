@@ -2,6 +2,5 @@
 
 int main() {
   VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");
-  voxelEngine.run();
   return 0;
 }

@@ -1,8 +1,12 @@
 #include "voxelengine/components/mesh.hpp"
+#include <memory>
 #include "glm/ext/vector_float3.hpp"
+#include "voxelengine/material/material.hpp"
 #include "voxelengine/vertex_data.hpp"
 
 using namespace VoxelEngine;
+
+Mesh::Mesh(std::shared_ptr<Material> material) : material(material) {}
 
 void Mesh::setupMesh() {
   // TODO: Move this to its own utility function
@@ -27,7 +31,6 @@ void Mesh::setupMesh() {
   glEnableVertexAttribArray(0);
 }
 
-void Mesh::bindVertexArray() {
-  glBindVertexArray(VAO);
-  material->useShader();
-}
+GLuint Mesh::getVAO() { return VAO; }
+
+int Mesh::getVerticeSize() { return sizeof(VertexData) * vertices.size(); }

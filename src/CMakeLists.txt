@@ -29,6 +29,9 @@ add_executable(${PROJECT_NAME}
 
 	# Object
 	object/object.cpp
+
+	# Renderer
+	renderer/renderer.cpp
 )
 
 # inlcude

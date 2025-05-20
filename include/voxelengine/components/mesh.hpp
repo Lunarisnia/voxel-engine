@@ -8,15 +8,18 @@
 namespace VoxelEngine {
 class Mesh : public Component {
   MAKE_UNIQUE_COMPONENT();
+  MAKE_COMPONENT_TYPE(MESH);
 
  private:
   GLuint VAO, VBO;
   std::vector<VertexData> vertices;
 
  public:
+  Mesh(std::shared_ptr<Material> material);
   std::shared_ptr<Material> material;
 
   void setupMesh();
-  void bindVertexArray();
+  GLuint getVAO();
+  int getVerticeSize();
 };
 }  // namespace VoxelEngine

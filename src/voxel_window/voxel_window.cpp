@@ -2,11 +2,8 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
-#include "voxelengine/components/mesh.hpp"
-#include "voxelengine/shader/shader.hpp"
 #include <cstdlib>
 #include <iostream>
-#include <memory>
 
 using namespace VoxelEngine;
 
@@ -53,22 +50,16 @@ void VoxelWindow::initialize(int width, int height, const char *title) {
 }
 
 void VoxelWindow::render() {
-  Shader shader("./shaders/default/default.vert",
-                "./shaders/default/default.frag");
-  Mesh mesh = Mesh();
-  mesh.material = std::make_shared<Material>(shader);
-  mesh.setupMesh();
-
-  while (!glfwWindowShouldClose(window)) {
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    mesh.bindVertexArray();
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+  if (glfwWindowShouldClose(window)) {
+    glfwTerminate();
   }
+
+  /*glUseProgram(shaderProgram);*/
+  /*mesh.bindVertexArray();*/
+  glDrawArrays(GL_TRIANGLES, 0, 3);
+
+  glfwSwapBuffers(window);
+  glfwPollEvents();
 }
 
 VoxelWindow::~VoxelWindow() { glfwTerminate(); }
