@@ -6,7 +6,7 @@
 #include "voxelengine/material/material.hpp"
 #include "voxelengine/vertex_data.hpp"
 namespace VoxelEngine {
-class Mesh : VoxelEngine::Component {
+class Mesh : public Component {
   MAKE_UNIQUE_COMPONENT();
 
  private:

@@ -3,7 +3,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include "voxelengine/components/component.hpp"
 namespace VoxelEngine {
-class Transform : VoxelEngine::Component {
+class Transform : public Component {
   MAKE_UNIQUE_COMPONENT();
 
  protected:

@@ -10,12 +10,29 @@ class Object;
   }  // namespace VoxelEngine
 
 class Component {
- protected:
-  std::shared_ptr<Object> owner;
+  friend class Object;
 
  public:
-  inline std::shared_ptr<Object> getOwner() const { return owner; }
+  uint64_t id = 0;
+
+ protected:
+  Object* owner;
+
+ public:
+  inline Object* getOwner() const { return owner; }
 
   virtual inline bool isUnique() { return false; }
+
+  template <class Type, typename... Args>
+  static std::shared_ptr<Type> createComponent(Args... args);
 };
+
+template <class Type, typename... Args>
+std::shared_ptr<Type> Component::createComponent(Args... args) {
+  if (!std::is_base_of<Component, Type>()) {
+    return nullptr;
+  }
+
+  return std::make_shared<Type>(args...);
+}
 };  // namespace VoxelEngine

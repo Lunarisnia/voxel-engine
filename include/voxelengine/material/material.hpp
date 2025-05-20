@@ -7,5 +7,7 @@ class Material {
 
  public:
   Material(Shader shader);
+
+  void useShader();
 };
 }  // namespace VoxelEngine

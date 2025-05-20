@@ -21,7 +21,14 @@ add_executable(${PROJECT_NAME}
 	error_handling/gl_error.cpp
 	
 	# Components
+	components/component.cpp
 	components/mesh.cpp
+
+	# Material
+	material/material.cpp
+
+	# Object
+	object/object.cpp
 )
 
 # inlcude

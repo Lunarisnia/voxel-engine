@@ -6,6 +6,7 @@
 #include "voxelengine/shader/shader.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 
 using namespace VoxelEngine;
 
@@ -55,14 +56,13 @@ void VoxelWindow::render() {
   Shader shader("./shaders/default/default.vert",
                 "./shaders/default/default.frag");
   Mesh mesh = Mesh();
+  mesh.material = std::make_shared<Material>(shader);
   mesh.setupMesh();
 
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    /*glUseProgram(shaderProgram);*/
-    shader.use();
     mesh.bindVertexArray();
     glDrawArrays(GL_TRIANGLES, 0, 3);
 

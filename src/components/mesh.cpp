@@ -1,5 +1,4 @@
 #include "voxelengine/components/mesh.hpp"
-#include <iostream>
 #include "glm/ext/vector_float3.hpp"
 #include "voxelengine/vertex_data.hpp"
 
@@ -15,9 +14,6 @@ void Mesh::setupMesh() {
   v.position = glm::vec3(-0.5f, -0.5f, 0.0f);
   vertices.push_back(v);
 
-  std::cout << sizeof(VertexData) << ": verts" << std::endl;
-  std::cout << sizeof(float) * 3 << ": raw" << std::endl;
-
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -31,4 +27,7 @@ void Mesh::setupMesh() {
   glEnableVertexAttribArray(0);
 }
 
-void Mesh::bindVertexArray() { glBindVertexArray(VAO); }
+void Mesh::bindVertexArray() {
+  glBindVertexArray(VAO);
+  material->useShader();
+}
