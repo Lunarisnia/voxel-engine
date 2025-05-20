@@ -18,7 +18,7 @@ class Object {
   std::vector<std::shared_ptr<Component>> components;
 
  public:
-  Object();
+  Object(std::string name);
 
   template <class Type, typename... Args>
   std::shared_ptr<Type> createComponent(Args... args);

@@ -2,4 +2,6 @@
 #include "voxelengine/components/transform.hpp"
 using namespace VoxelEngine;
 
-Object::Object() { transform = createComponent<Transform>(); }
+Object::Object(std::string name) : name(name) {
+  transform = createComponent<Transform>();
+}
