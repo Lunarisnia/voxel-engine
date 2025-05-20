@@ -19,6 +19,9 @@ add_executable(${PROJECT_NAME}
 
 	# Error handling
 	error_handling/gl_error.cpp
+	
+	# Components
+	components/mesh.cpp
 )
 
 # inlcude
