@@ -29,10 +29,9 @@ class Component {
  private:
   uint64_t id = 0;
   ComponentType type;
-
- protected:
   Object* owner;
 
+ protected:
  public:
   inline Object* getOwner() const { return owner; }
 

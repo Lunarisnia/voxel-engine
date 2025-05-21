@@ -12,6 +12,7 @@ class Transform : public Component {
   glm::mat4 transformMatrix;
 
  private:
+  // TODO: refactor to tick update system so we dont have to call this everytime
   inline void updateTransformMatrix() {
     transformMatrix = glm::translate(glm::mat4(1.0f), position);
     transformMatrix = glm::scale(transformMatrix, scale);

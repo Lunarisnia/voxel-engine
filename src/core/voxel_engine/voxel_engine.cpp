@@ -1,6 +1,5 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
 #include <memory>
-#include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
@@ -12,8 +11,8 @@ Engine::Engine(int width, int height, const char* title) {
   InputManager::initialize();
   Renderer::initialize();
 
-  std::shared_ptr<Object> cube = ObjectPrimitives::GenerateCube("foo");
-  mesh = cube->getComponent<Mesh>();
+  object = ObjectPrimitives::GenerateCube("foo");
+  std::shared_ptr<Mesh> mesh = object->getComponent<Mesh>();
   Renderer::addToRenderQueue(mesh);
 };
 

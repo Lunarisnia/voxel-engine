@@ -5,7 +5,7 @@
 namespace VoxelEngine {
 class Renderer {
  private:
-  static std::vector<const std::shared_ptr<Mesh>> renderQueue;
+  inline static std::vector<std::shared_ptr<Mesh>> renderQueue;
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:

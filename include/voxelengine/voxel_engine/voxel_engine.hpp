@@ -1,11 +1,10 @@
 #pragma once
 #include <memory>
-#include "voxelengine/components/mesh.hpp"
+#include "voxelengine/object/object.hpp"
 namespace VoxelEngine {
 class Engine {
  public:
-  std::shared_ptr<Mesh> mesh;
-
+  std::shared_ptr<Object> object;
   Engine(int width, int height, const char* title);
 
   void tick();

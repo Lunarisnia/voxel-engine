@@ -1,10 +1,9 @@
 #include "glad/glad.h"
 #include "voxelengine/renderer/renderer.hpp"
 #include <memory>
+#include "voxelengine/object/object.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
-
-std::vector<const std::shared_ptr<Mesh>> Renderer::renderQueue;
 
 void Renderer::initialize() {
   int width = VoxelWindow::width;
@@ -18,11 +17,16 @@ void Renderer::initialize() {
 }
 
 void Renderer::addToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
-  Renderer::renderQueue.push_back(mesh);
+  renderQueue.emplace_back(mesh);
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
   mesh->material->useShader();
+
+  Object* owner = mesh->getOwner();
+  mesh->material->setMatrix4x4("transform",
+                               owner->transform->getTransformMatrix());
+
   glBindVertexArray(mesh->getVAO());
   glDrawArrays(GL_TRIANGLES, 0, mesh->getVerticeSize());
 }
