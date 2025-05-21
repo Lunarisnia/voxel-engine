@@ -4,6 +4,8 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
 
+std::vector<const std::shared_ptr<Mesh>> Renderer::renderQueue;
+
 void Renderer::initialize() {
   int width = VoxelWindow::width;
   int height = VoxelWindow::height;
@@ -13,6 +15,10 @@ void Renderer::initialize() {
   } else {
     setViewport(0, 0, width, height);
   }
+}
+
+void Renderer::addToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
+  Renderer::renderQueue.push_back(mesh);
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
@@ -30,4 +36,10 @@ void Renderer::clear() { glClear(GL_COLOR_BUFFER_BIT); }
 void Renderer::setViewport(int bottomLeftX, int bottomLeftY, int width,
                            int height) {
   glViewport(bottomLeftX, bottomLeftY, width, height);
+}
+
+void Renderer::tick() {
+  for (const std::shared_ptr<Mesh>& mesh : renderQueue) {
+    drawMesh(mesh);
+  }
 }

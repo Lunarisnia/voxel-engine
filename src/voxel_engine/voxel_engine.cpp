@@ -16,13 +16,15 @@ Engine::Engine(int width, int height, const char* title) {
                 "./shaders/default/default.frag");
   mesh = obj.createComponent<Mesh>(std::make_shared<Material>(shader));
   mesh->setupMesh();
+
+  Renderer::addToRenderQueue(mesh);
 };
 
 void Engine::tick() {
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 
-  Renderer::drawMesh(mesh);
+  Renderer::tick();
 
   VoxelWindow::render();
 }
