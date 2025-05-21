@@ -1,5 +1,6 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
 #include <memory>
+#include "GLFW/glfw3.h"
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
@@ -21,6 +22,10 @@ Engine::Engine(int width, int height, const char* title) {
 };
 
 void Engine::tick() {
+  if (InputManager::getKey(GLFW_KEY_E)) {
+    std::cout << "FOO" << std::endl;
+  }
+
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 

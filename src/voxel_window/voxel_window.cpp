@@ -2,7 +2,6 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
-#include "voxelengine/shader/shader.hpp"
 #include <cstdlib>
 #include <iostream>
 
