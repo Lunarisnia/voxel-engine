@@ -10,11 +10,11 @@ void Renderer::initialize() {
   int width = VoxelWindow::width;
   int height = VoxelWindow::height;
 
-  if (__APPLE__) {
-    setViewport(0, 0, width * 2, height * 2);
-  } else {
-    setViewport(0, 0, width, height);
-  }
+#if defined(WIN32)
+  setViewport(0, 0, width, height);
+#else
+  setViewport(0, 0, width * 2, height * 2);
+#endif
 }
 
 void Renderer::addToRenderQueue(const std::shared_ptr<Mesh>& mesh) {

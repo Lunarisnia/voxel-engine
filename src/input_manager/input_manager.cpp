@@ -1,4 +1,5 @@
 #include "voxelengine/input_manager/input_manager.hpp"
+#include "GLFW/glfw3.h"
 #include "voxelengine/input_manager/key_event.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 
@@ -7,6 +8,10 @@ using namespace VoxelEngine;
 KeyEvent InputManager::keys[349];
 
 void InputManager::initialize() {
+  glfwSetInputMode(VoxelWindow::getWindow(), GLFW_STICKY_KEYS, GLFW_TRUE);
+  glfwSetInputMode(VoxelWindow::getWindow(), GLFW_STICKY_MOUSE_BUTTONS,
+                   GLFW_TRUE);
+
   VoxelWindow::registerKeyCallback(key_callback);
 }
 

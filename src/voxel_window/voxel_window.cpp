@@ -62,4 +62,6 @@ void VoxelWindow::render() {
   glfwPollEvents();
 }
 
+GLFWwindow *VoxelWindow::getWindow() { return VoxelWindow::window; }
+
 VoxelWindow::~VoxelWindow() { glfwTerminate(); }
