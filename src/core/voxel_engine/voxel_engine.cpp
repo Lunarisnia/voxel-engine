@@ -25,4 +25,5 @@ void Engine::tick() {
   VoxelWindow::render();
 }
 
+// TODO: Handle rotation, maybe its high time we learn about quaternion?
 // TODO: add glfw keycode as our own constant
