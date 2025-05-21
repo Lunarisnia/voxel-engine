@@ -2,36 +2,36 @@
 add_executable(${PROJECT_NAME} 
 	main.cpp 
 	# VoxelEngine
-	voxel_engine/voxel_engine.cpp
+	core/voxel_engine/voxel_engine.cpp
 
 	# VoxelWindow
-	voxel_window/voxel_window.cpp
+	core/voxel_window/voxel_window.cpp
 
 	# InputManager
-	input_manager/key_event.cpp
-	input_manager/input_manager.cpp
+	core/input_manager/key_event.cpp
+	core/input_manager/input_manager.cpp
 
 	# Resource
-	resource/resource.cpp
+	core/resource/resource.cpp
 
 	# Shader
-	shader/shader.cpp
+	core/shader/shader.cpp
 
 	# Error handling
-	error_handling/gl_error.cpp
+	core/error_handling/gl_error.cpp
 	
 	# Components
-	components/component.cpp
-	components/mesh.cpp
+	core/components/component.cpp
+	core/components/mesh.cpp
 
 	# Material
-	material/material.cpp
+	core/material/material.cpp
 
 	# Object
-	object/object.cpp
+	core/object/object.cpp
 
 	# Renderer
-	renderer/renderer.cpp
+	core/renderer/renderer.cpp
 )
 
 # inlcude
