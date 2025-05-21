@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
 	# Components
 	core/components/component.cpp
 	core/components/mesh.cpp
+	core/components/transform.cpp
 
 	# Material
 	core/material/material.cpp

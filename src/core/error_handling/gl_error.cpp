@@ -7,6 +7,6 @@ using namespace VoxelEngine;
 void GlErrorHandler::Log(std::string prefix) {
   GLuint errorCode = glGetError();
   if (errorCode != GL_NO_ERROR) {
-    std::cout << prefix << ": " << std::hex << glGetError() << std::endl;
+    std::cout << prefix << ": " << std::hex << errorCode << std::endl;
   }
 }

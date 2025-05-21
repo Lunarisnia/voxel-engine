@@ -12,9 +12,6 @@ Engine::Engine(int width, int height, const char* title) {
   InputManager::initialize();
   Renderer::initialize();
 
-  Shader shader("./shaders/default/default.vert",
-                "./shaders/default/default.frag");
-
   std::shared_ptr<Object> cube = ObjectPrimitives::GenerateCube("foo");
   mesh = cube->getComponent<Mesh>();
   Renderer::addToRenderQueue(mesh);

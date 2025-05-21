@@ -1,5 +1,7 @@
 #include "voxelengine/shader/shader.hpp"
 #include <iostream>
+#include "glm/ext/matrix_float4x4.hpp"
+#include "glm/gtc/type_ptr.hpp"
 #include "voxelengine/error_handling/gl_error.hpp"
 #include "voxelengine/resource/resource.hpp"
 using namespace VoxelEngine;
@@ -23,7 +25,7 @@ Shader::Shader(std::string vertexPath, std::string fragmentPath) {
 
 void Shader::use() {
   glUseProgram(id);
-  GlErrorHandler::Log(errorPrefix);
+  GlErrorHandler::Log(errorPrefix + "::Use");
 }
 
 GLuint Shader::createShader(ShaderType type) {
@@ -66,5 +68,13 @@ void Shader::linkShader(GLuint vertexShader, GLuint fragmentShader) {
     char infoLog[512];
     glGetProgramInfoLog(id, 512, NULL, infoLog);
     std::cout << "PROGRAM: " << infoLog << std::endl;
+  }
+}
+
+void Shader::setMatrix4x4(std::string uniform, const glm::mat4 &mat4) {
+  use();
+  GLint location = glGetUniformLocation(id, uniform.c_str());
+  if (location != -1) {
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
   }
 }
