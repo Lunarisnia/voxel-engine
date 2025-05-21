@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <iostream>
 #include <memory>
 #include <string>
 #include <type_traits>
@@ -12,6 +11,7 @@
 namespace VoxelEngine {
 class Object {
  public:
+  uint64_t id;
   std::string name;
   std::shared_ptr<Transform> transform;
 

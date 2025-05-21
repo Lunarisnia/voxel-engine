@@ -32,6 +32,9 @@ add_executable(${PROJECT_NAME}
 
 	# Renderer
 	core/renderer/renderer.cpp
+	
+	# Utils
+	core/utilities/object_primitives.cpp
 )
 
 # inlcude

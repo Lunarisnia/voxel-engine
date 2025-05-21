@@ -1,10 +1,10 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
 #include <memory>
-#include "GLFW/glfw3.h"
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
+#include "voxelengine/utilities/object_primitives.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
 
@@ -19,13 +19,11 @@ Engine::Engine(int width, int height, const char* title) {
   mesh->setupMesh();
 
   Renderer::addToRenderQueue(mesh);
+
+  std::shared_ptr<Object> cube = ObjectPrimitives::GenerateCube("foo");
 };
 
 void Engine::tick() {
-  if (InputManager::getKey(GLFW_KEY_E)) {
-    std::cout << "FOO" << std::endl;
-  }
-
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 
@@ -33,3 +31,5 @@ void Engine::tick() {
 
   VoxelWindow::render();
 }
+
+// TODO: add glfw keycode as our own constant

@@ -1,8 +1,11 @@
 #pragma once
 
+#include <memory>
+#include <string>
+#include "voxelengine/object/object.hpp"
 namespace VoxelEngine {
 class ObjectPrimitives {
  public:
-  static void GenerateCube();
+  static std::shared_ptr<Object> GenerateCube(std::string name);
 };
 }  // namespace VoxelEngine
