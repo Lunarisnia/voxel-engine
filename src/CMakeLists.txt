@@ -35,6 +35,7 @@ add_executable(${PROJECT_NAME}
 	
 	# Utils
 	core/utilities/object_primitives.cpp
+	core/utilities/procedural_mesh.cpp
 )
 
 # inlcude

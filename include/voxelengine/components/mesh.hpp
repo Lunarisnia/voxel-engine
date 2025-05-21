@@ -15,12 +15,13 @@ class Mesh : public Component {
   std::vector<VertexData> vertices;
 
  public:
-  /*Mesh();*/
+  Mesh();
   Mesh(std::shared_ptr<Material> mat);
   std::shared_ptr<Material> material;
 
   void setupMesh();
   GLuint getVAO();
   int getVerticeSize();
+  void addVertexData(VertexData vertexData);
 };
 }  // namespace VoxelEngine

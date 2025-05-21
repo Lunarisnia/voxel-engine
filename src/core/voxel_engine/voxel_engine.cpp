@@ -1,6 +1,5 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
 #include <memory>
-#include "voxelengine/components/mesh.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
@@ -15,12 +14,10 @@ Engine::Engine(int width, int height, const char* title) {
 
   Shader shader("./shaders/default/default.vert",
                 "./shaders/default/default.frag");
-  mesh = obj.createComponent<Mesh>(std::make_shared<Material>(shader));
-  mesh->setupMesh();
-
-  Renderer::addToRenderQueue(mesh);
 
   std::shared_ptr<Object> cube = ObjectPrimitives::GenerateCube("foo");
+  mesh = cube->getComponent<Mesh>();
+  Renderer::addToRenderQueue(mesh);
 };
 
 void Engine::tick() {

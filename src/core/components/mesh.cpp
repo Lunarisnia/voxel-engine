@@ -1,23 +1,14 @@
 #include "voxelengine/components/mesh.hpp"
 #include <memory>
-#include "glm/ext/vector_float3.hpp"
 #include "voxelengine/material/material.hpp"
 #include "voxelengine/vertex_data.hpp"
 
 using namespace VoxelEngine;
 
+Mesh::Mesh() {};
 Mesh::Mesh(std::shared_ptr<Material> material) : material(material) {}
 
 void Mesh::setupMesh() {
-  // TODO: Move this to its own utility function
-  VertexData v = VertexData();
-  v.position = glm::vec3(0.0f, 0.5f, 0.0f);
-  vertices.push_back(v);
-  v.position = glm::vec3(0.5f, -0.5f, 0.0f);
-  vertices.push_back(v);
-  v.position = glm::vec3(-0.5f, -0.5f, 0.0f);
-  vertices.push_back(v);
-
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -34,3 +25,7 @@ void Mesh::setupMesh() {
 GLuint Mesh::getVAO() { return VAO; }
 
 int Mesh::getVerticeSize() { return vertices.size(); }
+
+void Mesh::addVertexData(VertexData vertexData) {
+  vertices.push_back(vertexData);
+}
