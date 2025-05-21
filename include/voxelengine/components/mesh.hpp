@@ -15,8 +15,8 @@ class Mesh : public Component {
   std::vector<VertexData> vertices;
 
  public:
-  Mesh();
-  Mesh(std::shared_ptr<Material> material);
+  /*Mesh();*/
+  Mesh(std::shared_ptr<Material> mat);
   std::shared_ptr<Material> material;
 
   void setupMesh();

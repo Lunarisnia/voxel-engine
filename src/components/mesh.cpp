@@ -6,7 +6,6 @@
 
 using namespace VoxelEngine;
 
-Mesh::Mesh() {}
 Mesh::Mesh(std::shared_ptr<Material> material) : material(material) {}
 
 void Mesh::setupMesh() {
@@ -34,4 +33,4 @@ void Mesh::setupMesh() {
 
 GLuint Mesh::getVAO() { return VAO; }
 
-int Mesh::getVerticeSize() { return sizeof(VertexData) * vertices.size(); }
+int Mesh::getVerticeSize() { return vertices.size(); }

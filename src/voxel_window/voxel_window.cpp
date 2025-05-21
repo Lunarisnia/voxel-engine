@@ -2,6 +2,7 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
+#include "voxelengine/shader/shader.hpp"
 #include <cstdlib>
 #include <iostream>
 
@@ -46,17 +47,16 @@ void VoxelWindow::initialize(int width, int height, const char *title) {
     return;
   }
 
+  VoxelWindow::width = width;
+  VoxelWindow::height = height;
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
 }
 
 void VoxelWindow::render() {
   if (glfwWindowShouldClose(window)) {
     glfwTerminate();
+    exit(0);
   }
-
-  /*glUseProgram(shaderProgram);*/
-  /*mesh.bindVertexArray();*/
-  glDrawArrays(GL_TRIANGLES, 0, 3);
 
   glfwSwapBuffers(window);
   glfwPollEvents();

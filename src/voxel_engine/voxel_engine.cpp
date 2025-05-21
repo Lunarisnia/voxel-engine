@@ -1,5 +1,4 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
-#include <iostream>
 #include <memory>
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/object/object.hpp"
@@ -15,17 +14,15 @@ Engine::Engine(int width, int height, const char* title) {
 
   Shader shader("./shaders/default/default.vert",
                 "./shaders/default/default.frag");
-  std::shared_ptr<Mesh> mesh =
-      obj.createComponent<Mesh>(std::make_shared<Material>(shader));
-  std::cout << "Hello: " << mesh->getType() << std::endl;
-  obj.getComponent<Mesh>();
+  mesh = obj.createComponent<Mesh>(std::make_shared<Material>(shader));
+  mesh->setupMesh();
 };
 
 void Engine::tick() {
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 
-  /*Renderer::drawMesh(mesh);*/
+  Renderer::drawMesh(mesh);
 
   VoxelWindow::render();
 }

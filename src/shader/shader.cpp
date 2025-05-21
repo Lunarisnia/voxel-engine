@@ -37,6 +37,14 @@ void Shader::compileShader(GLuint shaderId, const char *shaderSource) {
   GlErrorHandler::Log(errorPrefix);
   glCompileShader(shaderId);
   GlErrorHandler::Log(errorPrefix);
+
+  int code;
+  glGetShaderiv(shaderId, GL_COMPILE_STATUS, &code);
+  if (!code) {
+    char infoLog[512];
+    glGetShaderInfoLog(shaderId, 512, NULL, infoLog);
+    std::cout << "SHADER: " << infoLog << std::endl;
+  }
 }
 
 void Shader::createProgram() {

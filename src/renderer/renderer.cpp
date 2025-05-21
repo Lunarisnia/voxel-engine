@@ -1,7 +1,6 @@
-#include "voxelengine/renderer/renderer.hpp"
-#include <OpenGL/gl.h>
-#include <memory>
 #include "glad/glad.h"
+#include "voxelengine/renderer/renderer.hpp"
+#include <memory>
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
 
@@ -9,7 +8,11 @@ void Renderer::initialize() {
   int width = VoxelWindow::width;
   int height = VoxelWindow::height;
 
-  setViewport(0, 0, width, height);
+  if (__APPLE__) {
+    setViewport(0, 0, width * 2, height * 2);
+  } else {
+    setViewport(0, 0, width, height);
+  }
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
