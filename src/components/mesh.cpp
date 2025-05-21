@@ -6,6 +6,7 @@
 
 using namespace VoxelEngine;
 
+Mesh::Mesh() {}
 Mesh::Mesh(std::shared_ptr<Material> material) : material(material) {}
 
 void Mesh::setupMesh() {

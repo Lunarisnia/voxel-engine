@@ -18,6 +18,7 @@ Engine::Engine(int width, int height, const char* title) {
   std::shared_ptr<Mesh> mesh =
       obj.createComponent<Mesh>(std::make_shared<Material>(shader));
   std::cout << "Hello: " << mesh->getType() << std::endl;
+  obj.getComponent<Mesh>();
 };
 
 void Engine::tick() {

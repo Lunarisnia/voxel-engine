@@ -2,6 +2,9 @@
 #include <memory>
 namespace VoxelEngine {
 class Object;
+class Component;
+template <class Type>
+concept DerivedFromComponent = std::is_base_of_v<Component, Type>;
 
 enum ComponentType {
   TRANSFORM,
@@ -39,16 +42,12 @@ class Component {
     return ComponentType::TRANSFORM;
   }
 
-  template <class Type, typename... Args>
+  template <DerivedFromComponent Type, typename... Args>
   static std::shared_ptr<Type> createComponent(Args... args);
 };
 
-template <class Type, typename... Args>
+template <DerivedFromComponent Type, typename... Args>
 std::shared_ptr<Type> Component::createComponent(Args... args) {
-  if (!std::is_base_of<Component, Type>()) {
-    return nullptr;
-  }
-
   return std::make_shared<Type>(args...);
 }
 };  // namespace VoxelEngine

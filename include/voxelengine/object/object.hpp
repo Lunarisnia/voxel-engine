@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cstdint>
+#include <iostream>
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <vector>
 #include "voxelengine/components/component.hpp"
 #include "voxelengine/components/transform.hpp"
@@ -20,17 +22,17 @@ class Object {
  public:
   Object(std::string name);
 
-  template <class Type, typename... Args>
+  template <DerivedFromComponent Type, typename... Args>
   std::shared_ptr<Type> createComponent(Args... args);
 
-  template <class Type>
+  template <DerivedFromComponent Type>
   std::shared_ptr<Type> getComponent();
 
-  template <class Type>
+  template <DerivedFromComponent Type>
   void addComponent(const std::shared_ptr<Type> &component);
 };
 
-template <class Type, typename... Args>
+template <DerivedFromComponent Type, typename... Args>
 std::shared_ptr<Type> Object::createComponent(Args... args) {
   std::shared_ptr<Type> component = Component::createComponent<Type>(args...);
   if (component == nullptr) {
@@ -45,16 +47,23 @@ std::shared_ptr<Type> Object::createComponent(Args... args) {
   return component;
 }
 
-template <class Type>
+template <DerivedFromComponent Type>
 void Object::addComponent(const std::shared_ptr<Type> &component) {
   components.push_back(component);
 }
 
-template <class Type>
+template <DerivedFromComponent Type>
 std::shared_ptr<Type> Object::getComponent() {
-  for (std::shared_ptr<Component> &comp : components) {
-    // TODO: Make sure its a child of component
-    // TODO: see if any is matching one of this component
+  if constexpr (!std::is_base_of<Component, Type>::value) {
+    return nullptr;
   }
+
+  std::shared_ptr<Type> temp = Component::createComponent<Type>();
+  for (std::shared_ptr<Component> &comp : components) {
+    if (temp->getType() == comp->getType()) {
+      return std::dynamic_pointer_cast<Type>(comp);
+    }
+  }
+  return nullptr;
 }
 }  // namespace VoxelEngine
