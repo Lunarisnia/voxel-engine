@@ -2,11 +2,11 @@
 #include <memory>
 #include "GLFW/glfw3.h"
 #include "glm/ext/quaternion_geometric.hpp"
+#include "voxelengine/math/quaternion.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "glm/ext/quaternion_float.hpp"
 #include "glm/ext/quaternion_trigonometric.hpp"
 #include "glm/ext/vector_float3.hpp"
-#include "glm/gtc/quaternion.hpp"
 #include "glm/trigonometric.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
@@ -19,6 +19,7 @@ Engine::Engine(int width, int height, const char* title) {
   Renderer::initialize();
   // TODO: WORLD: to manage all the component tick
 
+  Quaternion q(1.0f, 0.0f, 0.0f, 0.0f);
   object = ObjectPrimitives::GenerateCube("foo");
   std::shared_ptr<Mesh> mesh = object->getComponent<Mesh>();
   Renderer::addToRenderQueue(mesh);
@@ -27,11 +28,9 @@ Engine::Engine(int width, int height, const char* title) {
 void Engine::tick() {
   // TODO: remove this after abstracting quaternion
   std::shared_ptr<Transform> t = object->getComponent<Transform>();
-  t->rotation = glm::angleAxis(glm::radians((float)glfwGetTime()),
-                               glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f))) *
-                t->rotation;
-  t->rotation = glm::normalize(t->rotation);
-  t->eulerAngles = glm::eulerAngles(t->rotation);
+  t->rotation.rotate(glm::radians((float)glfwGetTime()),
+                     glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f)));
+  t->rotation.normalize();
   t->tick();
 
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
@@ -42,5 +41,4 @@ void Engine::tick() {
   VoxelWindow::render();
 }
 
-// TODO: Handle rotation, maybe its high time we learn about quaternion?
 // TODO: add glfw keycode as our own constant

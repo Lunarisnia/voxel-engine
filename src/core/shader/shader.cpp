@@ -76,5 +76,6 @@ void Shader::setMatrix4x4(std::string uniform, const glm::mat4 &mat4) {
   GLint location = glGetUniformLocation(id, uniform.c_str());
   if (location != -1) {
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
+    GlErrorHandler::Log(errorPrefix);
   }
 }

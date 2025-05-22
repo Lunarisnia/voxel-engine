@@ -1,10 +1,9 @@
 #pragma once
 #include "glm/ext/matrix_transform.hpp"
-#include "glm/ext/quaternion_float.hpp"
 #include "glm/ext/vector_float3.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include "glm/gtc/quaternion.hpp"
 #include "voxelengine/components/component.hpp"
+#include "voxelengine/math/quaternion.hpp"
 namespace VoxelEngine {
 class Transform : public Component {
   MAKE_UNIQUE_COMPONENT();
@@ -17,16 +16,14 @@ class Transform : public Component {
   inline void updateTransformMatrix() {
     transformMatrix = glm::translate(glm::mat4(1.0f), position);
     transformMatrix = glm::scale(transformMatrix, scale);
-    transformMatrix *= glm::mat4_cast(rotation);
+    transformMatrix *= rotation.mat4Cast();
   }
 
  public:
   glm::vec3 position;
+  // TODO: abstract vec3 away
   glm::vec3 scale = glm::vec3(1.0f);
-  // TODO: how about we just use quaternion for rotation and have the quaternion
-  // return its euler angle for UI purpose only
-  glm::vec3 eulerAngles = glm::vec3(0.0f);
-  glm::quat rotation = glm::quat(eulerAngles);
+  Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
   Transform() { transformMatrix = glm::mat4(1.0f); }
 
   inline void tick() override {
