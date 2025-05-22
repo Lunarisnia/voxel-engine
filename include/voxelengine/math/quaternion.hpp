@@ -17,6 +17,8 @@ class Quaternion {
     z = q.z;
   }
 
+  inline glm::quat getGlmQuat() const { return glm::quat(w, x, y, z); }
+
  public:
   float w;
   float x;
@@ -32,7 +34,6 @@ class Quaternion {
     reassignQuaternion(q);
   }
 
-  inline glm::quat getGlmQuat() const { return glm::quat(w, x, y, z); }
   inline Quaternion normalize() {
     glm::quat newQuat = getGlmQuat();
     return glm::normalize(newQuat);
