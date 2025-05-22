@@ -23,6 +23,7 @@ class Quaternion {
   float z;
   inline Quaternion(float w, float x, float y, float z)
       : w(w), x(x), y(y), z(z) {};
+  inline Quaternion() : w(1.0f), x(0.0f), y(0.0f), z(0.0f) {};
 
   inline void rotate(float angle, glm::vec3 axis) {
     glm::quat q = glm::quat(w, x, y, z) * glm::angleAxis(angle, axis);
