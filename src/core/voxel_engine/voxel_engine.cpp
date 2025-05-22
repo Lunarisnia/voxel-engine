@@ -1,34 +1,29 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
-#include <memory>
-#include "GLFW/glfw3.h"
-#include "voxelengine/math/quaternion.hpp"
 #include "voxelengine/renderer/renderer.hpp"
-#include "glm/ext/vector_float3.hpp"
-#include "glm/trigonometric.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
+#include "voxelengine/world/world.hpp"
 using namespace VoxelEngine;
 
 Engine::Engine(int width, int height, const char* title) {
   VoxelWindow::initialize(width, height, title);
   InputManager::initialize();
   Renderer::initialize();
-  // TODO: WORLD: to manage all the component tick
+  World::initialize();
 
-  Quaternion q;
   object = ObjectPrimitives::GenerateCube("foo");
-  std::shared_ptr<Mesh> mesh = object->getComponent<Mesh>();
-  Renderer::addToRenderQueue(mesh);
+  World::addObject(object);
 };
 
 void Engine::tick() {
-  // TODO: remove this after abstracting quaternion
+  // TODO: remove this later
   std::shared_ptr<Transform> t = object->getComponent<Transform>();
   t->rotation.rotate(glm::radians((float)glfwGetTime()),
                      glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f)));
   t->rotation.normalize();
 
+  World::tick();
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 

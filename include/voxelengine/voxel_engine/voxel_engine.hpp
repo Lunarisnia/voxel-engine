@@ -1,6 +1,5 @@
 #pragma once
 #include <memory>
-#include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/object/object.hpp"
 namespace VoxelEngine {
 class Engine {

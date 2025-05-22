@@ -5,6 +5,7 @@
 #include "glm/ext/quaternion_trigonometric.hpp"
 #include "glm/ext/vector_float3.hpp"
 #include "glm/gtc/quaternion.hpp"
+namespace VoxelEngine {
 class Quaternion {
  private:
   inline Quaternion(glm::quat newQuat) { reassignQuaternion(newQuat); };
@@ -47,3 +48,4 @@ class Quaternion {
     return res;
   }
 };
+}  // namespace VoxelEngine
