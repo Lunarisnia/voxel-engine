@@ -14,7 +14,6 @@ Engine::Engine(int width, int height, const char* title) {
 
 void Engine::tick() {
   World::tick();
-  Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 
   Renderer::tick();

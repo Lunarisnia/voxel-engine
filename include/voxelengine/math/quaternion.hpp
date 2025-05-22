@@ -48,5 +48,6 @@ class Quaternion {
     Quaternion res(1.0f, 0.0f, 0.0f, 0.0f);
     return res;
   }
+  // TODO: Operator * vector
 };
 }  // namespace VoxelEngine
