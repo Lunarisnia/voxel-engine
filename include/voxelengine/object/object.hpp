@@ -20,7 +20,12 @@ class Object {
   std::vector<std::shared_ptr<Component>> components;
 
  public:
-  Object(std::string name);
+  inline Object(std::string name) : name(name) {
+    id = std::time(nullptr);
+    transform = createComponent<Transform>();
+  };
+
+  void tick();
 
   template <DerivedFromComponent Type, typename... Args>
   std::shared_ptr<Type> createComponent(Args... args);

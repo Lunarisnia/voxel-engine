@@ -28,7 +28,6 @@ void Engine::tick() {
   t->rotation.rotate(glm::radians((float)glfwGetTime()),
                      glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f)));
   t->rotation.normalize();
-  t->tick();
 
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
