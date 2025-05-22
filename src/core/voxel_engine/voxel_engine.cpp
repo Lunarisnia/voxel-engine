@@ -1,4 +1,4 @@
-#include "voxelengine/voxel_engine/voxel_engine.hpp"
+#include "voxelengine/engine.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"

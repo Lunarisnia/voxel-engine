@@ -1,5 +1,5 @@
 #include "glad/glad.h"
-#include "voxelengine/voxel_engine/voxel_engine.hpp"
+#include "voxelengine/engine.hpp"
 
 int main() {
   VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");
