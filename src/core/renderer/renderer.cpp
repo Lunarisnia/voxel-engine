@@ -14,6 +14,8 @@ void Renderer::initialize() {
 #else
   setViewport(0, 0, width * 2, height * 2);
 #endif
+
+  glEnable(GL_DEPTH_TEST);
 }
 
 void Renderer::addToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
@@ -35,7 +37,7 @@ void Renderer::setBackgroundColor(float r, float g, float b, float a) {
   glClearColor(r, g, b, a);
 }
 
-void Renderer::clear() { glClear(GL_COLOR_BUFFER_BIT); }
+void Renderer::clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 void Renderer::setViewport(int bottomLeftX, int bottomLeftY, int width,
                            int height) {

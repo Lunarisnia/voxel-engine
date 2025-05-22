@@ -1,7 +1,9 @@
 #pragma once
 #include "glm/ext/matrix_transform.hpp"
+#include "glm/ext/quaternion_float.hpp"
 #include "glm/ext/vector_float3.hpp"
 #include <glm/gtc/matrix_transform.hpp>
+#include "glm/gtc/quaternion.hpp"
 #include "voxelengine/components/component.hpp"
 namespace VoxelEngine {
 class Transform : public Component {
@@ -12,25 +14,28 @@ class Transform : public Component {
   glm::mat4 transformMatrix;
 
  private:
-  // TODO: refactor to tick update system so we dont have to call this everytime
   inline void updateTransformMatrix() {
     transformMatrix = glm::translate(glm::mat4(1.0f), position);
     transformMatrix = glm::scale(transformMatrix, scale);
+    transformMatrix *= glm::mat4_cast(rotation);
   }
 
  public:
-  Transform() {
-    transformMatrix = glm::mat4(1.0f);
-    transformMatrix = glm::translate(transformMatrix, position);
-    transformMatrix = glm::scale(transformMatrix, scale);
-  }
   glm::vec3 position;
   glm::vec3 scale = glm::vec3(1.0f);
+  // TODO: how about we just use quaternion for rotation and have the quaternion
+  // return its euler angle for UI purpose only
+  glm::vec3 eulerAngles = glm::vec3(0.0f);
+  glm::quat rotation = glm::quat(eulerAngles);
+  Transform() { transformMatrix = glm::mat4(1.0f); }
 
-  inline void setPosition(glm::vec3 newPosition) {
-    position = newPosition;
+  inline void tick() override {
+    Component::tick();
+
     updateTransformMatrix();
   }
+
+  inline void setPosition(glm::vec3 newPosition) { position = newPosition; }
 
   inline glm::mat4 getTransformMatrix() const { return transformMatrix; }
 };

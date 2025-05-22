@@ -35,6 +35,8 @@ class Component {
  public:
   inline Object* getOwner() const { return owner; }
 
+  virtual inline void tick() {};
+
   virtual inline bool isUnique() { return false; }
 
   virtual inline ComponentType getType() const {

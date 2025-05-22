@@ -1,6 +1,13 @@
 #include "voxelengine/voxel_engine/voxel_engine.hpp"
 #include <memory>
+#include "GLFW/glfw3.h"
+#include "glm/ext/quaternion_geometric.hpp"
 #include "voxelengine/renderer/renderer.hpp"
+#include "glm/ext/quaternion_float.hpp"
+#include "glm/ext/quaternion_trigonometric.hpp"
+#include "glm/ext/vector_float3.hpp"
+#include "glm/gtc/quaternion.hpp"
+#include "glm/trigonometric.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
@@ -10,6 +17,7 @@ Engine::Engine(int width, int height, const char* title) {
   VoxelWindow::initialize(width, height, title);
   InputManager::initialize();
   Renderer::initialize();
+  // TODO: WORLD: to manage all the component tick
 
   object = ObjectPrimitives::GenerateCube("foo");
   std::shared_ptr<Mesh> mesh = object->getComponent<Mesh>();
@@ -17,6 +25,15 @@ Engine::Engine(int width, int height, const char* title) {
 };
 
 void Engine::tick() {
+  // TODO: remove this after abstracting quaternion
+  std::shared_ptr<Transform> t = object->getComponent<Transform>();
+  t->rotation = glm::angleAxis(glm::radians((float)glfwGetTime()),
+                               glm::normalize(glm::vec3(1.0f, 1.0f, 0.0f))) *
+                t->rotation;
+  t->rotation = glm::normalize(t->rotation);
+  t->eulerAngles = glm::eulerAngles(t->rotation);
+  t->tick();
+
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Renderer::clear();
 
