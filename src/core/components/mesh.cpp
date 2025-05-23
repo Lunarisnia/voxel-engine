@@ -20,6 +20,9 @@ void Mesh::SetupMesh() {
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData),
                         (void *)0);
   glEnableVertexAttribArray(0);
+  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData),
+                        (void *)sizeof(glm::vec3));
+  glEnableVertexAttribArray(1);
 }
 
 GLuint Mesh::GetVAO() { return VAO; }

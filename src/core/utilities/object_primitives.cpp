@@ -19,3 +19,17 @@ std::shared_ptr<Object> ObjectPrimitives::GenerateCube(std::string name) {
 
   return cube;
 }
+
+std::shared_ptr<Object> ObjectPrimitives::GeneratePlane(std::string name) {
+  std::shared_ptr<Object> plane = std::make_shared<Object>(name);
+
+  Shader shader = Shader("./shaders/default/default.vert",
+                         "./shaders/default/default.frag");
+  std::shared_ptr<Material> material = std::make_shared<Material>(shader);
+  std::shared_ptr<Mesh> mesh = plane->CreateComponent<Mesh>(material);
+
+  ProceduralMesh::GeneratePlaneMesh(mesh);
+  mesh->SetupMesh();
+
+  return plane;
+}

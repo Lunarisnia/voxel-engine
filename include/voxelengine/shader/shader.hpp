@@ -22,6 +22,8 @@ class Shader {
   Shader(std::string vertexPath, std::string fragmentPath);
   void Use();
 
-  void SetMatrix4x4(std::string uniform, const glm::mat4& mat4);
+  void SetMatrix4x4(const std::string& uniform, const glm::mat4& mat4);
+
+  void SetInt(const std::string& uniform, const int i);
 };
 }  // namespace VoxelEngine

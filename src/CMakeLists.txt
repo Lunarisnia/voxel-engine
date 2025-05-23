@@ -46,6 +46,12 @@ add_executable(${PROJECT_NAME}
 
 	# Time
 	core/time/time.cpp
+
+	# Texture
+	core/texture/texture.cpp
+
+	# stbi image
+	vendor/stbi_image/stbi_image.cpp
 )
 
 # inlcude

@@ -71,11 +71,20 @@ void Shader::linkShader(GLuint vertexShader, GLuint fragmentShader) {
   }
 }
 
-void Shader::SetMatrix4x4(std::string uniform, const glm::mat4 &mat4) {
+void Shader::SetMatrix4x4(const std::string &uniform, const glm::mat4 &mat4) {
   Use();
   GLint location = glGetUniformLocation(id, uniform.c_str());
   if (location != -1) {
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));
+    GlErrorHandler::Log(errorPrefix);
+  }
+}
+
+void Shader::SetInt(const std::string &uniform, const int i) {
+  Use();
+  GLint location = glGetUniformLocation(id, uniform.c_str());
+  if (location != -1) {
+    glUniform1i(location, i);
     GlErrorHandler::Log(errorPrefix);
   }
 }

@@ -1,3 +1,4 @@
+#include "stbi_image/stbi_image.h"
 #include "voxelengine/engine.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
@@ -6,7 +7,7 @@
 #include "voxelengine/world/world.hpp"
 using namespace VoxelEngine;
 
-Engine::Engine(int width, int height, const char* title) {
+Engine::Engine(int width, int height, const char *title) {
   VoxelWindow::Initialize(width, height, title);
   Time::Initialize();
   InputManager::Initialize();

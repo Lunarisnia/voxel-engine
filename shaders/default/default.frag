@@ -1,7 +1,12 @@
 #version 330 core
 out vec4 FragColor;
 
+in vec2 texCoord;
+in vec3 testColor;
+
+uniform sampler2D tex;
+
 void main() {
-    // FragColor = vec4(0.3f, 0.1f, 0.4f, 1.0f);
-    FragColor = vec4(gl_FragCoord.xyz, 1.0f);
+    vec4 image = texture(tex, texCoord);
+    FragColor = vec4(image.xyz, 1.0f);
 }

@@ -32,8 +32,7 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
     return;
   }
 
-  mesh->material->UseShader();
-
+  mesh->material->Use();
   mesh->material->SetMatrix4x4("transform",
                                owner->transform->GetTransformMatrix());
 

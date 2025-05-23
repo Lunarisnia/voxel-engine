@@ -1,9 +1,11 @@
 #include "voxelengine/world/world.hpp"
 #include <stdio.h>
 #include <memory>
+#include <string>
 #include "glm/ext/vector_float3.hpp"
 #include "glm/geometric.hpp"
 #include "glm/trigonometric.hpp"
+#include "stbi_image/stbi_image.h"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
@@ -11,8 +13,19 @@
 #include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
+std::shared_ptr<Object> object;
+
 void World::Initialize() {
-  World::AddObject(ObjectPrimitives::GenerateCube("foo"));
+  object = ObjectPrimitives::GeneratePlane("foo");
+  World::AddObject(object);
+
+  // TODO: abstract this
+  int imgWidth, imgHeight, nrChannels;
+  unsigned char *img = stbi_load("./assets/container.jpg", &imgWidth,
+                                 &imgHeight, &nrChannels, 0);
+  std::shared_ptr<Mesh> mesh = object->GetComponent<Mesh>();
+  mesh->material->SetTexture(imgWidth, imgHeight, img);
+  stbi_image_free(img);
 
   Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Logger::Log(LogCategory::INFO, "Initialized World", "World::Initialize");
