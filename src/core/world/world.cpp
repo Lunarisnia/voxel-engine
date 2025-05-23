@@ -3,9 +3,12 @@
 #include <memory>
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
+#include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
 void World::initialize() {
+  World::addObject(ObjectPrimitives::GenerateCube("foo"));
+
   Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
 }
 

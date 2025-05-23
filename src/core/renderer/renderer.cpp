@@ -23,9 +23,13 @@ void Renderer::addToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
+  Object* owner = mesh->getOwner();
+  if (!owner->isActive) {
+    return;
+  }
+
   mesh->material->useShader();
 
-  Object* owner = mesh->getOwner();
   mesh->material->setMatrix4x4("transform",
                                owner->transform->getTransformMatrix());
 

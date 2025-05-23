@@ -14,6 +14,7 @@ class Object {
   uint64_t id;
   std::string name;
   std::shared_ptr<Transform> transform;
+  bool isActive = true;
 
  private:
   inline static uint64_t nextComponentId = 0;
