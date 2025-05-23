@@ -1,6 +1,7 @@
 #include "voxelengine/log/logger.hpp"
 #include <iostream>
 #include <string>
+#include "voxelengine/time/time.hpp"
 using namespace VoxelEngine;
 void Logger::Log(LogCategory logCategory, const std::string &message,
                  const std::string &context) {
@@ -15,8 +16,8 @@ void Logger::Log(LogCategory logCategory, const std::string &message,
     logSymbol = "[UNKNOWN]";
   }
 
-  // TODO: Add timestamp
-  std::cout << logSymbol << "[" << context << "]: " << message << std::endl;
+  std::cout << "[" << Time::timeSinceStartup << "]" << logSymbol << "["
+            << context << "]: " << message << std::endl;
 }
 
 // TODO: add system to allow logging into files
