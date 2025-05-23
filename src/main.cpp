@@ -4,7 +4,7 @@
 int main() {
   VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");
   while (true) {
-    voxelEngine.tick();
+    voxelEngine.Tick();
   }
 
   return 0;

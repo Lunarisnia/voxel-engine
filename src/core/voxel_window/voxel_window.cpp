@@ -16,7 +16,7 @@ void VoxelWindow::error_callback(int code, const char *description) {
   std::cout << "ERROR::GLFW(" << code << "): " << description << std::endl;
 }
 
-void VoxelWindow::registerKeyCallback(GLFWkeyfun callback) {
+void VoxelWindow::RegisterKeyCallback(GLFWkeyfun callback) {
   glfwSetKeyCallback(window, callback);
 }
 
@@ -25,7 +25,7 @@ const char *VoxelWindow::title;
 int VoxelWindow::width;
 int VoxelWindow::height;
 
-void VoxelWindow::initialize(int width, int height, const char *title) {
+void VoxelWindow::Initialize(int width, int height, const char *title) {
   glfwSetErrorCallback(error_callback);
 
   glfwInit();
@@ -51,7 +51,7 @@ void VoxelWindow::initialize(int width, int height, const char *title) {
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
 }
 
-void VoxelWindow::render() {
+void VoxelWindow::Render() {
   if (glfwWindowShouldClose(window)) {
     glfwTerminate();
     exit(0);
@@ -61,6 +61,6 @@ void VoxelWindow::render() {
   glfwPollEvents();
 }
 
-GLFWwindow *VoxelWindow::getWindow() { return VoxelWindow::window; }
+GLFWwindow *VoxelWindow::GetWindow() { return VoxelWindow::window; }
 
 VoxelWindow::~VoxelWindow() { glfwTerminate(); }

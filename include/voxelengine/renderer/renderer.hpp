@@ -9,15 +9,15 @@ class Renderer {
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:
-  static void addToRenderQueue(const std::shared_ptr<Mesh>& mesh);
+  static void AddToRenderQueue(const std::shared_ptr<Mesh>& mesh);
 
-  static void initialize();
-  static void tick();
+  static void Initialize();
+  static void Tick();
 
-  static void clear();
-  static void setBackgroundColor(float r, float g, float b, float a);
+  static void Clear();
+  static void SetBackgroundColor(float r, float g, float b, float a);
 
-  static void setViewport(int bottomLeftX, int bottomLeftY, int width,
+  static void SetViewport(int bottomLeftX, int bottomLeftY, int width,
                           int height);
 };
 }  // namespace VoxelEngine

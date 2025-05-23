@@ -6,19 +6,19 @@
 using namespace VoxelEngine;
 
 Engine::Engine(int width, int height, const char* title) {
-  VoxelWindow::initialize(width, height, title);
-  InputManager::initialize();
-  Renderer::initialize();
-  World::initialize();
+  VoxelWindow::Initialize(width, height, title);
+  InputManager::Initialize();
+  Renderer::Initialize();
+  World::Initialize();
 };
 
-void Engine::tick() {
-  World::tick();
-  Renderer::clear();
+void Engine::Tick() {
+  World::Tick();
+  Renderer::Clear();
 
-  Renderer::tick();
+  Renderer::Tick();
 
-  VoxelWindow::render();
+  VoxelWindow::Render();
 }
 
 // TODO: add glfw keycode as our own constant

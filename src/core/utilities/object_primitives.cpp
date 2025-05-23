@@ -12,10 +12,10 @@ std::shared_ptr<Object> ObjectPrimitives::GenerateCube(std::string name) {
   Shader shader = Shader("./shaders/default/default.vert",
                          "./shaders/default/default.frag");
   std::shared_ptr<Material> material = std::make_shared<Material>(shader);
-  std::shared_ptr<Mesh> mesh = cube->createComponent<Mesh>(material);
+  std::shared_ptr<Mesh> mesh = cube->CreateComponent<Mesh>(material);
 
   ProceduralMesh::GenerateCubeMesh(mesh);
-  mesh->setupMesh();
+  mesh->SetupMesh();
 
   return cube;
 }

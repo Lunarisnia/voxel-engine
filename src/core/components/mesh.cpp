@@ -8,7 +8,7 @@ using namespace VoxelEngine;
 Mesh::Mesh() {};
 Mesh::Mesh(std::shared_ptr<Material> material) : material(material) {}
 
-void Mesh::setupMesh() {
+void Mesh::SetupMesh() {
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -22,10 +22,10 @@ void Mesh::setupMesh() {
   glEnableVertexAttribArray(0);
 }
 
-GLuint Mesh::getVAO() { return VAO; }
+GLuint Mesh::GetVAO() { return VAO; }
 
-int Mesh::getVerticeSize() { return vertices.size(); }
+int Mesh::GetVerticeSize() { return vertices.size(); }
 
-void Mesh::addVertexData(VertexData vertexData) {
+void Mesh::AddVertexData(VertexData vertexData) {
   vertices.push_back(vertexData);
 }

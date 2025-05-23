@@ -13,13 +13,13 @@ enum ComponentType {
 
 #define MAKE_UNIQUE_COMPONENT()             \
  public:                                    \
-  virtual inline bool isUnique() override { \
+  virtual inline bool IsUnique() override { \
     return true;                            \
   }  // namespace VoxelEngine
 
 #define MAKE_COMPONENT_TYPE(type)                         \
  public:                                                  \
-  virtual inline ComponentType getType() const override { \
+  virtual inline ComponentType GetType() const override { \
     return ComponentType::type;                           \
   }
 
@@ -33,22 +33,22 @@ class Component {
 
  protected:
  public:
-  inline Object* getOwner() const { return owner; }
+  inline Object* GetOwner() const { return owner; }
 
-  virtual inline void tick() {};
+  virtual inline void Tick() {};
 
-  virtual inline bool isUnique() { return false; }
+  virtual inline bool IsUnique() { return false; }
 
-  virtual inline ComponentType getType() const {
+  virtual inline ComponentType GetType() const {
     return ComponentType::TRANSFORM;
   }
 
   template <DerivedFromComponent Type, typename... Args>
-  static std::shared_ptr<Type> createComponent(Args... args);
+  static std::shared_ptr<Type> CreateComponent(Args... args);
 };
 
 template <DerivedFromComponent Type, typename... Args>
-std::shared_ptr<Type> Component::createComponent(Args... args) {
+std::shared_ptr<Type> Component::CreateComponent(Args... args) {
   return std::make_shared<Type>(args...);
 }
 };  // namespace VoxelEngine

@@ -23,24 +23,24 @@ class Object {
  public:
   inline Object(std::string name) : name(name) {
     id = std::time(nullptr);
-    transform = createComponent<Transform>();
+    transform = CreateComponent<Transform>();
   };
 
-  void tick();
+  void Tick();
 
   template <DerivedFromComponent Type, typename... Args>
-  std::shared_ptr<Type> createComponent(Args... args);
+  std::shared_ptr<Type> CreateComponent(Args... args);
 
   template <DerivedFromComponent Type>
-  std::shared_ptr<Type> getComponent();
+  std::shared_ptr<Type> GetComponent();
 
   template <DerivedFromComponent Type>
   void addComponent(const std::shared_ptr<Type> &component);
 };
 
 template <DerivedFromComponent Type, typename... Args>
-std::shared_ptr<Type> Object::createComponent(Args... args) {
-  std::shared_ptr<Type> component = Component::createComponent<Type>(args...);
+std::shared_ptr<Type> Object::CreateComponent(Args... args) {
+  std::shared_ptr<Type> component = Component::CreateComponent<Type>(args...);
   if (component == nullptr) {
     return nullptr;
   }
@@ -59,14 +59,14 @@ void Object::addComponent(const std::shared_ptr<Type> &component) {
 }
 
 template <DerivedFromComponent Type>
-std::shared_ptr<Type> Object::getComponent() {
+std::shared_ptr<Type> Object::GetComponent() {
   if constexpr (!std::is_base_of<Component, Type>::value) {
     return nullptr;
   }
 
-  std::shared_ptr<Type> temp = Component::createComponent<Type>();
+  std::shared_ptr<Type> temp = Component::CreateComponent<Type>();
   for (std::shared_ptr<Component> &comp : components) {
-    if (temp->getType() == comp->getType()) {
+    if (temp->GetType() == comp->GetType()) {
       return std::dynamic_pointer_cast<Type>(comp);
     }
   }

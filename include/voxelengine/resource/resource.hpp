@@ -3,6 +3,6 @@
 namespace VoxelEngine {
 class Resource {
  public:
-  static std::string loadCodeFromPath(std::string path);
+  static std::string LoadCodeFromPath(std::string path);
 };
 }  // namespace VoxelEngine

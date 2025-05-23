@@ -7,8 +7,8 @@
 using namespace VoxelEngine;
 
 Shader::Shader(std::string vertexPath, std::string fragmentPath) {
-  std::string vertexSource = Resource::loadCodeFromPath(vertexPath);
-  std::string fragmentSource = Resource::loadCodeFromPath(fragmentPath);
+  std::string vertexSource = Resource::LoadCodeFromPath(vertexPath);
+  std::string fragmentSource = Resource::LoadCodeFromPath(fragmentPath);
 
   GLuint vertexShader = createShader(VERTEX);
   compileShader(vertexShader, vertexSource.c_str());
@@ -23,7 +23,7 @@ Shader::Shader(std::string vertexPath, std::string fragmentPath) {
   glDeleteShader(fragmentShader);
 }
 
-void Shader::use() {
+void Shader::Use() {
   glUseProgram(id);
   GlErrorHandler::Log(errorPrefix + "::Use");
 }
@@ -71,8 +71,8 @@ void Shader::linkShader(GLuint vertexShader, GLuint fragmentShader) {
   }
 }
 
-void Shader::setMatrix4x4(std::string uniform, const glm::mat4 &mat4) {
-  use();
+void Shader::SetMatrix4x4(std::string uniform, const glm::mat4 &mat4) {
+  Use();
   GLint location = glGetUniformLocation(id, uniform.c_str());
   if (location != -1) {
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4));

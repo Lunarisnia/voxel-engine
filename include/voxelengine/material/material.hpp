@@ -10,7 +10,7 @@ class Material {
  public:
   Material(Shader shader) : shader(shader) {}
 
-  void useShader();
-  void setMatrix4x4(std::string uniform, const glm::mat4 &mat4);
+  void UseShader();
+  void SetMatrix4x4(std::string uniform, const glm::mat4 &mat4);
 };
 }  // namespace VoxelEngine

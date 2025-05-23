@@ -4,13 +4,13 @@
 
 using namespace VoxelEngine;
 
-void InputManager::initialize() {
-  glfwSetInputMode(VoxelWindow::getWindow(), GLFW_STICKY_KEYS, GLFW_TRUE);
-  glfwSetInputMode(VoxelWindow::getWindow(), GLFW_STICKY_MOUSE_BUTTONS,
+void InputManager::Initialize() {
+  glfwSetInputMode(VoxelWindow::GetWindow(), GLFW_STICKY_KEYS, GLFW_TRUE);
+  glfwSetInputMode(VoxelWindow::GetWindow(), GLFW_STICKY_MOUSE_BUTTONS,
                    GLFW_TRUE);
 }
 
-bool InputManager::getKey(int keyCode) {
-  int state = glfwGetKey(VoxelWindow::getWindow(), keyCode);
+bool InputManager::GetKey(int keyCode) {
+  int state = glfwGetKey(VoxelWindow::GetWindow(), keyCode);
   return state == GLFW_PRESS;
 }

@@ -19,9 +19,9 @@ class Mesh : public Component {
   Mesh(std::shared_ptr<Material> mat);
   std::shared_ptr<Material> material;
 
-  void setupMesh();
-  GLuint getVAO();
-  int getVerticeSize();
-  void addVertexData(VertexData vertexData);
+  void SetupMesh();
+  GLuint GetVAO();
+  int GetVerticeSize();
+  void AddVertexData(VertexData vertexData);
 };
 }  // namespace VoxelEngine

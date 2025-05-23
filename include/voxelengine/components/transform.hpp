@@ -26,8 +26,8 @@ class Transform : public Component {
   Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
   Transform() { transformMatrix = glm::mat4(1.0f); }
 
-  inline void tick() override {
-    Component::tick();
+  inline void Tick() override {
+    Component::Tick();
 
     updateTransformMatrix();
   }

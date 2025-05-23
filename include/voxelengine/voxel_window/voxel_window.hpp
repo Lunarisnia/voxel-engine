@@ -14,10 +14,10 @@ class VoxelWindow {
   static const char *title;
   static int width, height;
 
-  static GLFWwindow *getWindow();
-  static void initialize(int width, int height, const char *title);
-  static void render();
-  static void registerKeyCallback(GLFWkeyfun callback);
+  static GLFWwindow *GetWindow();
+  static void Initialize(int width, int height, const char *title);
+  static void Render();
+  static void RegisterKeyCallback(GLFWkeyfun callback);
 
   ~VoxelWindow();
 };

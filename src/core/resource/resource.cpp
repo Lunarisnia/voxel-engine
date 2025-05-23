@@ -5,7 +5,7 @@
 #include <string>
 using namespace VoxelEngine;
 
-std::string Resource::loadCodeFromPath(std::string path) {
+std::string Resource::LoadCodeFromPath(std::string path) {
   std::ifstream file(path);
   std::string code;
   try {

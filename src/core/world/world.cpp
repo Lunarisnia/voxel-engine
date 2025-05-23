@@ -6,31 +6,31 @@
 #include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
-void World::initialize() {
-  World::addObject(ObjectPrimitives::GenerateCube("foo"));
+void World::Initialize() {
+  World::AddObject(ObjectPrimitives::GenerateCube("foo"));
 
-  Renderer::setBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
+  Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
 }
 
-void World::tick() {
+void World::Tick() {
   for (const std::shared_ptr<Object> object : worldObjects) {
-    object->tick();
+    object->Tick();
   }
 }
 
-void World::addObject(const std::shared_ptr<Object> &object) {
+void World::AddObject(const std::shared_ptr<Object> &object) {
   if (worldObjects.contains(object)) {
     return;
   }
   worldObjects.insert(object);
 
-  std::shared_ptr<Mesh> mesh = object->getComponent<Mesh>();
+  std::shared_ptr<Mesh> mesh = object->GetComponent<Mesh>();
   if (mesh != nullptr) {
-    Renderer::addToRenderQueue(mesh);
+    Renderer::AddToRenderQueue(mesh);
   }
 }
 
-void World::removeObject(std::shared_ptr<Object> &object) {
+void World::RemoveObject(std::shared_ptr<Object> &object) {
   if (worldObjects.contains(object)) {
     worldObjects.erase(object);
   }
