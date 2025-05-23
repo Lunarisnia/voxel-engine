@@ -35,7 +35,7 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
   mesh->material->UseShader();
 
   mesh->material->SetMatrix4x4("transform",
-                               owner->transform->getTransformMatrix());
+                               owner->transform->GetTransformMatrix());
 
   glBindVertexArray(mesh->GetVAO());
   glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());

@@ -32,8 +32,8 @@ class Transform : public Component {
     updateTransformMatrix();
   }
 
-  inline void setPosition(glm::vec3 newPosition) { position = newPosition; }
+  inline void SetPosition(glm::vec3 newPosition) { position = newPosition; }
 
-  inline glm::mat4 getTransformMatrix() const { return transformMatrix; }
+  inline glm::mat4 GetTransformMatrix() const { return transformMatrix; }
 };
 }  // namespace VoxelEngine

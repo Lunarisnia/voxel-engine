@@ -1,9 +1,13 @@
 #include "voxelengine/world/world.hpp"
 #include <stdio.h>
 #include <memory>
+#include "glm/ext/vector_float3.hpp"
+#include "glm/geometric.hpp"
+#include "glm/trigonometric.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
+#include "voxelengine/time/time.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
@@ -16,6 +20,10 @@ void World::Initialize() {
 
 void World::Tick() {
   for (const std::shared_ptr<Object> object : worldObjects) {
+    // TODO: remove this
+    std::shared_ptr<Transform> t = object->GetComponent<Transform>();
+    t->rotation.rotate(glm::radians(20.0f) * Time::deltaTime,
+                       glm::normalize(glm::vec3(0.5f, 1.0f, 0.0f)));
     object->Tick();
   }
 }

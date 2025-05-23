@@ -43,6 +43,9 @@ add_executable(${PROJECT_NAME}
 
 	# Logger
 	core/log/logger.cpp
+
+	# Time
+	core/time/time.cpp
 )
 
 # inlcude

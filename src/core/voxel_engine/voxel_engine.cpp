@@ -1,23 +1,24 @@
 #include "voxelengine/engine.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
+#include "voxelengine/time/time.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include "voxelengine/world/world.hpp"
 using namespace VoxelEngine;
 
 Engine::Engine(int width, int height, const char* title) {
   VoxelWindow::Initialize(width, height, title);
+  Time::Initialize();
   InputManager::Initialize();
   Renderer::Initialize();
   World::Initialize();
 };
 
 void Engine::Tick() {
+  Time::Tick();
   World::Tick();
   Renderer::Clear();
-
   Renderer::Tick();
-
   VoxelWindow::Render();
 }
 
