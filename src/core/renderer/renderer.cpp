@@ -1,6 +1,7 @@
 #include "glad/glad.h"
 #include "voxelengine/renderer/renderer.hpp"
 #include <memory>
+#include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
@@ -16,6 +17,9 @@ void Renderer::Initialize() {
 #endif
 
   glEnable(GL_DEPTH_TEST);
+
+  Logger::Log(LogCategory::INFO, "Initialized Renderer",
+              "Renderer::Initialize");
 }
 
 void Renderer::AddToRenderQueue(const std::shared_ptr<Mesh>& mesh) {

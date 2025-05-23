@@ -2,6 +2,7 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 #include <OpenGL/gl.h>
 #include "GLFW/glfw3.h"
+#include "voxelengine/log/logger.hpp"
 #include <cstdlib>
 #include <iostream>
 
@@ -49,6 +50,9 @@ void VoxelWindow::Initialize(int width, int height, const char *title) {
   VoxelWindow::width = width;
   VoxelWindow::height = height;
   glfwSetFramebufferSizeCallback(window, framebuffer_resize_callback);
+
+  Logger::Log(LogCategory::INFO, "Initialized Window",
+              "VoxelWindow::Initialize");
 }
 
 void VoxelWindow::Render() {
@@ -63,4 +67,7 @@ void VoxelWindow::Render() {
 
 GLFWwindow *VoxelWindow::GetWindow() { return VoxelWindow::window; }
 
-VoxelWindow::~VoxelWindow() { glfwTerminate(); }
+VoxelWindow::~VoxelWindow() {
+  Logger::Log(LogCategory::INFO, "Cleaning window", "VoxelWindow::Desctructor");
+  glfwTerminate();
+}

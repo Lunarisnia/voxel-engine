@@ -1,6 +1,7 @@
 #include "voxelengine/world/world.hpp"
 #include <stdio.h>
 #include <memory>
+#include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
@@ -10,6 +11,7 @@ void World::Initialize() {
   World::AddObject(ObjectPrimitives::GenerateCube("foo"));
 
   Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
+  Logger::Log(LogCategory::INFO, "Initialized World", "World::Initialize");
 }
 
 void World::Tick() {
