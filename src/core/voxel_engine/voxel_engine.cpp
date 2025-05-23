@@ -1,4 +1,5 @@
 #include "voxelengine/engine.hpp"
+#include "voxelengine/log/logger.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
@@ -10,6 +11,8 @@ Engine::Engine(int width, int height, const char* title) {
   InputManager::Initialize();
   Renderer::Initialize();
   World::Initialize();
+
+  Logger::Log(LogCategory::ERROR, "Hello", "Test");
 };
 
 void Engine::Tick() {

@@ -40,6 +40,9 @@ add_executable(${PROJECT_NAME}
 
 	# World
 	core/world/world.cpp
+
+	# Logger
+	core/log/logger.cpp
 )
 
 # inlcude

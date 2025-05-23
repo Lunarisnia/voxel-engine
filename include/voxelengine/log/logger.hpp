@@ -1,4 +1,5 @@
 #pragma once
+#include <ctime>
 #include <string>
 namespace VoxelEngine {
 enum LogCategory {
@@ -10,9 +11,8 @@ enum LogCategory {
 class Logger {
  public:
   static void Log(LogCategory logCategory, const std::string &message,
-                  std::string &context);
+                  const std::string &context);
 
  private:
-  static void getTimestamp();
 };
 }  // namespace VoxelEngine
