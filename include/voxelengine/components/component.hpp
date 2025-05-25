@@ -9,6 +9,7 @@ concept DerivedFromComponent = std::is_base_of_v<Component, Type>;
 enum ComponentType {
   TRANSFORM,
   MESH,
+  CAMERA,
 };
 
 #define MAKE_UNIQUE_COMPONENT()             \
