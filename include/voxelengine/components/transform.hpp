@@ -15,31 +15,29 @@ class Transform : public Component {
 
  private:
   inline void updateTransformMatrix() {
-    transformMatrix = glm::translate(glm::mat4(1.0f), position);
-    transformMatrix = glm::scale(transformMatrix, scale);
+    transformMatrix = glm::translate(glm::mat4(1.0f), position.ToGlm());
+    transformMatrix = glm::scale(transformMatrix, scale.ToGlm());
     transformMatrix *= rotation.mat4Cast();
   }
 
  public:
-  glm::vec3 position;
+  Vec3 position;
   // TODO: abstract vec3 away
-  glm::vec3 scale = glm::vec3(1.0f);
+  Vec3 scale = Vec3(1.0f);
   Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
   Transform() { transformMatrix = glm::mat4(1.0f); }
 
-  inline static glm::vec3 worldForward = glm::vec3(0.0f, 0.0f, -1.0f);
-  inline static glm::vec3 worldRight = glm::vec3(0.0f, 1.0f, 0.0f);
-  inline static glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);
+  inline static Vec3 worldForward = Vec3(0.0f, 0.0f, -1.0f);
+  inline static Vec3 worldRight = Vec3(1.0f, 0.0f, 0.0f);
+  inline static Vec3 worldUp = Vec3(0.0f, 1.0f, 0.0f);
 
   inline Vec3 GetForwardVector() {
-    return glm::normalize(rotation * worldForward);
+    return (rotation * worldForward).Normalize();
   }
 
-  inline glm::vec3 GetRightVector() {
-    return glm::normalize(rotation * worldRight);
-  }
+  inline Vec3 GetRightVector() { return (rotation * worldRight).Normalize(); }
 
-  inline Vec3 GetUpVector() { return glm::normalize(rotation * worldUp); }
+  inline Vec3 GetUpVector() { return (rotation * worldUp).Normalize(); }
 
   inline void Tick() override {
     Component::Tick();

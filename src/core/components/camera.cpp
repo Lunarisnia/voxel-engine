@@ -7,13 +7,14 @@
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
 
+// TODO: abstract mat4
 glm::mat4 Camera::GetViewMatrix() {
   Object *o = owner;
   Vec3 up = o->transform->GetUpVector();
   Vec3 front = o->transform->GetForwardVector();
 
-  glm::mat4 view = glm::lookAt(position.toGlm(),
-                               position.toGlm() + front.toGlm(), up.toGlm());
+  glm::mat4 view = glm::lookAt(position.ToGlm(),
+                               position.ToGlm() + front.ToGlm(), up.ToGlm());
 
   return view;
 }

@@ -5,6 +5,7 @@
 #include "glm/ext/quaternion_trigonometric.hpp"
 #include "glm/ext/vector_float3.hpp"
 #include "glm/gtc/quaternion.hpp"
+#include "voxelengine/math/vec3.hpp"
 namespace VoxelEngine {
 class Quaternion {
  private:
@@ -52,6 +53,11 @@ class Quaternion {
   glm::vec3 operator*(glm::vec3 const& other) {
     glm::quat q = getGlmQuat();
     return q * other;
+  }
+
+  Vec3 operator*(Vec3 const& other) {
+    glm::quat q = getGlmQuat();
+    return q * other.ToGlm();
   }
 };
 }  // namespace VoxelEngine
