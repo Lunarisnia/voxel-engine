@@ -26,6 +26,20 @@ class Transform : public Component {
   Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
   Transform() { transformMatrix = glm::mat4(1.0f); }
 
+  inline static glm::vec3 worldForward = glm::vec3(0.0f, 0.0f, -1.0f);
+  inline static glm::vec3 worldRight = glm::vec3(0.0f, 1.0f, 0.0f);
+  inline static glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+  inline glm::vec3 GetForwardVector() {
+    return glm::normalize(rotation * worldForward);
+  }
+
+  inline glm::vec3 GetRightVector() {
+    return glm::normalize(rotation * worldRight);
+  }
+
+  inline glm::vec3 GetUpVector() { return glm::normalize(rotation * worldUp); }
+
   inline void Tick() override {
     Component::Tick();
 

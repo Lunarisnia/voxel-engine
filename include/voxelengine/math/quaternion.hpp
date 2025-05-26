@@ -48,6 +48,11 @@ class Quaternion {
     Quaternion res(1.0f, 0.0f, 0.0f, 0.0f);
     return res;
   }
+
+  glm::vec3 operator*(glm::vec3 const& other) {
+    glm::quat q = getGlmQuat();
+    return q * other;
+  }
   // TODO: Operator * vector
 };
 }  // namespace VoxelEngine

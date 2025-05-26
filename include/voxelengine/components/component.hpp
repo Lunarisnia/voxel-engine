@@ -30,9 +30,10 @@ class Component {
  private:
   uint64_t id = 0;
   ComponentType type;
-  Object* owner;
 
  protected:
+  Object* owner;
+
  public:
   inline Object* GetOwner() const { return owner; }
 

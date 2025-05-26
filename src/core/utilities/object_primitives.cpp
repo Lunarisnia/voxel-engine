@@ -1,6 +1,8 @@
 #include "voxelengine/utilities/object_primitives.hpp"
 #include <memory>
 #include "voxelengine/components/mesh.hpp"
+#include "voxelengine/components/camera.hpp"
+#include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/shader/shader.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/utilities/procedural_mesh.hpp"
@@ -36,4 +38,15 @@ std::shared_ptr<Object> ObjectPrimitives::GeneratePlane(std::string name) {
   mesh->material->texture.LoadTexture("./assets/container.jpg");
 
   return plane;
+}
+
+std::shared_ptr<Object> ObjectPrimitives::GenerateCamera(std::string name) {
+  std::shared_ptr<Object> cam = std::make_shared<Object>(name);
+
+  std::shared_ptr<Camera> cameraComponent = cam->CreateComponent<Camera>();
+  if (Renderer::mainCamera == nullptr) {
+    Renderer::mainCamera = cam;
+  }
+
+  return cam;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "glm/ext/matrix_float4x4.hpp"
+#include "glm/ext/vector_float3.hpp"
 /*#include <glm/gtc/matrix_transform.hpp>*/
 namespace VoxelEngine {
 class DebugLogger {
@@ -12,6 +13,11 @@ class DebugLogger {
       }
       std::cout << std::endl;
     }
+  }
+
+  inline static void Vec3(glm::vec3 vec) {
+    std::cout << "X: " << vec.x << " Y: " << vec.y << " Z: " << vec.z
+              << std::endl;
   }
 };
 }  // namespace VoxelEngine

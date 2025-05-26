@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include "voxelengine/components/mesh.hpp"
+#include "voxelengine/components/mesh.hpp"
 namespace VoxelEngine {
 class Renderer {
  private:
@@ -9,6 +10,7 @@ class Renderer {
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:
+  static std::shared_ptr<Object> mainCamera;
   static void AddToRenderQueue(const std::shared_ptr<Mesh>& mesh);
 
   static void Initialize();

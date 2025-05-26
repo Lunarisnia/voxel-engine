@@ -1,10 +1,13 @@
 #include "glad/glad.h"
 #include "voxelengine/renderer/renderer.hpp"
 #include <memory>
+#include "voxelengine/components/camera.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
+
+std::shared_ptr<Object> Renderer::mainCamera;
 
 void Renderer::Initialize() {
   int width = VoxelWindow::width;
@@ -35,6 +38,13 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
   mesh->material->Use();
   mesh->material->SetMatrix4x4("transform",
                                owner->transform->GetTransformMatrix());
+  if (mainCamera != nullptr) {
+    mesh->material->SetMatrix4x4(
+        "view", mainCamera->GetComponent<Camera>()->GetViewMatrix());
+    mesh->material->SetMatrix4x4(
+        "projection",
+        mainCamera->GetComponent<Camera>()->GetProjectionMatrix());
+  }
 
   glBindVertexArray(mesh->GetVAO());
   glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());

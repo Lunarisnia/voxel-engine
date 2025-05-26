@@ -20,6 +20,9 @@ class Object {
   inline static uint64_t nextComponentId = 0;
   std::vector<std::shared_ptr<Component>> components;
 
+  template <DerivedFromComponent Type>
+  void addComponent(const std::shared_ptr<Type> &component);
+
  public:
   inline Object(std::string name) : name(name) {
     id = std::time(nullptr);
@@ -33,9 +36,6 @@ class Object {
 
   template <DerivedFromComponent Type>
   std::shared_ptr<Type> GetComponent();
-
-  template <DerivedFromComponent Type>
-  void addComponent(const std::shared_ptr<Type> &component);
 };
 
 template <DerivedFromComponent Type, typename... Args>

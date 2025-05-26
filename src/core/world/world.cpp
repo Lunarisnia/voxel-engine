@@ -19,6 +19,9 @@ void World::Initialize() {
   object = ObjectPrimitives::GenerateCube("foo");
   World::AddObject(object);
 
+  // Create the main camera
+  ObjectPrimitives::GenerateCamera("MainCamera");
+
   Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Logger::Log(LogCategory::INFO, "Initialized World", "World::Initialize");
 }
