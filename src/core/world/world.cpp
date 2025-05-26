@@ -16,7 +16,7 @@ using namespace VoxelEngine;
 std::shared_ptr<Object> object;
 
 void World::Initialize() {
-  object = ObjectPrimitives::GeneratePlane("foo");
+  object = ObjectPrimitives::GenerateCube("foo");
   World::AddObject(object);
 
   Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);

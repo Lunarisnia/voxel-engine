@@ -17,6 +17,8 @@ std::shared_ptr<Object> ObjectPrimitives::GenerateCube(std::string name) {
   ProceduralMesh::GenerateCubeMesh(mesh);
   mesh->SetupMesh();
 
+  mesh->material->texture.LoadTexture("./assets/container.jpg");
+
   return cube;
 }
 
