@@ -31,5 +31,7 @@ std::shared_ptr<Object> ObjectPrimitives::GeneratePlane(std::string name) {
   ProceduralMesh::GeneratePlaneMesh(mesh);
   mesh->SetupMesh();
 
+  mesh->material->texture.LoadTexture("./assets/container.jpg");
+
   return plane;
 }

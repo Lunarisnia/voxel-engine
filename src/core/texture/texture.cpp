@@ -1,9 +1,11 @@
 #include "voxelengine/texture/texture.hpp"
+#include <string>
+#include "voxelengine/resource/resource.hpp"
 using namespace VoxelEngine;
 
 Texture::Texture() { glGenTextures(1, &id); }
 
-void Texture::SetTexture(int width, int height, unsigned char* data) {
+void Texture::SetTexture(int width, int height, unsigned char *data) {
   Bind();
 
   // TODO: Maybe set active texture slot as a parameter somewhere?
