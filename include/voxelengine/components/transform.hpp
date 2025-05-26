@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "voxelengine/components/component.hpp"
 #include "voxelengine/math/quaternion.hpp"
+#include "voxelengine/math/vec3.hpp"
 namespace VoxelEngine {
 class Transform : public Component {
   MAKE_UNIQUE_COMPONENT();
@@ -30,7 +31,7 @@ class Transform : public Component {
   inline static glm::vec3 worldRight = glm::vec3(0.0f, 1.0f, 0.0f);
   inline static glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
-  inline glm::vec3 GetForwardVector() {
+  inline Vec3 GetForwardVector() {
     return glm::normalize(rotation * worldForward);
   }
 
@@ -38,7 +39,7 @@ class Transform : public Component {
     return glm::normalize(rotation * worldRight);
   }
 
-  inline glm::vec3 GetUpVector() { return glm::normalize(rotation * worldUp); }
+  inline Vec3 GetUpVector() { return glm::normalize(rotation * worldUp); }
 
   inline void Tick() override {
     Component::Tick();

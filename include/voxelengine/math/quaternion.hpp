@@ -53,6 +53,5 @@ class Quaternion {
     glm::quat q = getGlmQuat();
     return q * other;
   }
-  // TODO: Operator * vector
 };
 }  // namespace VoxelEngine
