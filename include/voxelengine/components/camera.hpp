@@ -8,7 +8,7 @@ class Camera : public Component {
   MAKE_COMPONENT_TYPE(CAMERA);
 
  public:
-  glm::vec3 position = glm::vec3(0.0f, 0.0f, 1.0f);
+  glm::vec3 position = glm::vec3(0.0f, 0.0f, 5.0f);
   float fov = 45.0f;
   float near = 0.01f;
   float far = 100.0f;
