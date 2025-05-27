@@ -21,7 +21,6 @@ class Transform : public Component {
 
  public:
   Vec3 position;
-  // TODO: abstract vec3 away
   Vec3 scale = Vec3(1.0f);
   Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
   Transform() { transformMatrix = glm::mat4(1.0f); }
