@@ -57,11 +57,15 @@ add_executable(${PROJECT_NAME}
 	# stbi image
 	vendor/stbi_image/stbi_image.cpp
 
+
 	# Imgui
 	${SOURCES}
 	vendor/imgui/backends/imgui_impl_opengl3.cpp
 	vendor/imgui/backends/imgui_impl_glfw.cpp
 	vendor/imgui/misc/cpp/imgui_stdlib.cpp
+
+	# Voxedit::Window
+	editor/editor.cpp
 )
 
 # inlcude

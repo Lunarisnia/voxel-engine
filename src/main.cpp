@@ -1,11 +1,15 @@
 #include "glad/glad.h"
-#include "voxelengine/engine.hpp"
+#include "voxedit/editor.hpp"
 
 int main() {
-  VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");
-  while (true) {
-    voxelEngine.Tick();
-  }
+  Voxedit::Editor editor;
+  editor.Initialize();
+
+  editor.Tick();
+  /*VoxelEngine::Engine voxelEngine(800, 640, "Voxel Engine");*/
+  /*while (true) {*/
+  /*  voxelEngine.Tick();*/
+  /*}*/
 
   return 0;
 }

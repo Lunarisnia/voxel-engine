@@ -2,9 +2,7 @@
 namespace VoxelEngine {
 class Engine {
  public:
-  Engine(int width, int height, const char* title);
-
-  void Tick();
-  void Run();
+  static void Initialize(int width, int height, const char* title);
+  static void Tick();
 };
 }  // namespace VoxelEngine
