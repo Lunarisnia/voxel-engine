@@ -60,10 +60,10 @@ void VoxelWindow::Render() {
     glfwTerminate();
     exit(0);
   }
-
-  glfwSwapBuffers(window);
   glfwPollEvents();
 }
+
+void VoxelWindow::SwapBuffer() { glfwSwapBuffers(window); }
 
 GLFWwindow *VoxelWindow::GetWindow() { return VoxelWindow::window; }
 

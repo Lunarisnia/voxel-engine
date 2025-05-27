@@ -18,6 +18,7 @@ class VoxelWindow {
   static void Initialize(int width, int height, const char *title);
   static void Render();
   static void RegisterKeyCallback(GLFWkeyfun callback);
+  static void SwapBuffer();
 
   ~VoxelWindow();
 };
