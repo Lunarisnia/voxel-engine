@@ -1,5 +1,5 @@
 # collect all imgui files
-file(GLOB SOURCES editor/imgui/*.cpp)
+file(GLOB SOURCES vendor/imgui/*.cpp)
 
 # Add the source files
 add_executable(${PROJECT_NAME} 
@@ -59,14 +59,15 @@ add_executable(${PROJECT_NAME}
 
 	# Imgui
 	${SOURCES}
-	editor/imgui/backends/imgui_impl_opengl3.cpp
-	editor/imgui/misc/cpp/imgui_stdlib.cpp
+	vendor/imgui/backends/imgui_impl_opengl3.cpp
+	vendor/imgui/backends/imgui_impl_glfw.cpp
+	vendor/imgui/misc/cpp/imgui_stdlib.cpp
 )
 
 # inlcude
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 # imgui include
-target_include_directories(${PROJECT_NAME} PUBLIC editor/imgui)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/imgui)
 
 # Link to vendor
 target_link_libraries(${PROJECT_NAME} vendor)

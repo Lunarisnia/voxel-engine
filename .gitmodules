@@ -4,6 +4,6 @@
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "src/editor/imgui"]
-	path = src/editor/imgui
+[submodule "src/vendor/imgui"]
+	path = src/vendor/imgui
 	url = https://github.com/ocornut/imgui.git
