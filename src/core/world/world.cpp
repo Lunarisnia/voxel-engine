@@ -2,23 +2,14 @@
 #include <stdio.h>
 #include <memory>
 #include <string>
-#include "glm/ext/vector_float3.hpp"
-#include "glm/geometric.hpp"
-#include "glm/trigonometric.hpp"
 #include "stbi_image/stbi_image.h"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
-#include "voxelengine/time/time.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
-std::shared_ptr<Object> object;
-
 void World::Initialize() {
-  object = ObjectPrimitives::GenerateCube("foo");
-  World::AddObject(object);
-
   // Create the main camera
   ObjectPrimitives::GenerateCamera("MainCamera");
 
@@ -28,10 +19,6 @@ void World::Initialize() {
 
 void World::Tick() {
   for (const std::shared_ptr<Object> object : worldObjects) {
-    // TODO: remove this
-    std::shared_ptr<Transform> t = object->GetComponent<Transform>();
-    t->rotation.rotate(glm::radians(20.0f) * Time::deltaTime,
-                       glm::normalize(glm::vec3(0.5f, 1.0f, 0.0f)));
     object->Tick();
   }
 }

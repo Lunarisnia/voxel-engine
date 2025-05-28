@@ -11,7 +11,6 @@ void Editor::Initialize() {
   VoxelEngine::Engine::Initialize(800, 600, "Game");
 
   CreateTab<Debug>("Debug");
-  CreateTab<Debug>("Debug");
 
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
