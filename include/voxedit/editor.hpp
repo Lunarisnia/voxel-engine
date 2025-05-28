@@ -8,9 +8,9 @@ class Editor {
  public:
   void Initialize();
   void Render();
-
-  ~Editor();
-
   void Tick();
+
+ public:
+  ~Editor();
 };
 };  // namespace Voxedit

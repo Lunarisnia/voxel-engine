@@ -20,7 +20,7 @@ void Engine::Tick() {
   World::Tick();
   Renderer::Clear();
   Renderer::Tick();
-  VoxelWindow::Render();
+  VoxelWindow::PollEvent();
 }
 
 // TODO: add glfw keycode as our own constant

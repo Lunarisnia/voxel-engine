@@ -37,11 +37,11 @@ class Component {
  public:
   inline Object* GetOwner() const { return owner; }
 
-  virtual inline void Tick() {};
+  inline virtual void Tick() {};
 
-  virtual inline bool IsUnique() { return false; }
+  inline virtual bool IsUnique() { return false; }
 
-  virtual inline ComponentType GetType() const {
+  inline virtual ComponentType GetType() const {
     return ComponentType::TRANSFORM;
   }
 

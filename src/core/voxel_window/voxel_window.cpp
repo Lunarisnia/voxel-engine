@@ -55,13 +55,9 @@ void VoxelWindow::Initialize(int width, int height, const char *title) {
               "VoxelWindow::Initialize");
 }
 
-void VoxelWindow::Render() {
-  if (glfwWindowShouldClose(window)) {
-    glfwTerminate();
-    exit(0);
-  }
-  glfwPollEvents();
-}
+void VoxelWindow::PollEvent() { glfwPollEvents(); }
+
+bool VoxelWindow::ShouldClose() { return glfwWindowShouldClose(window); }
 
 void VoxelWindow::SwapBuffer() { glfwSwapBuffers(window); }
 

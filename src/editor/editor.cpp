@@ -28,7 +28,7 @@ void Editor::Render() {
 }
 
 void Editor::Tick() {
-  while (true) {
+  while (!VoxelEngine::VoxelWindow::ShouldClose()) {
     VoxelEngine::Engine::Tick();
     Render();
     VoxelEngine::VoxelWindow::SwapBuffer();
