@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include "imgui.h"
 #include "voxedit/tabs/editor_tab.hpp"
 #include "voxelengine/object/object.hpp"
 namespace Voxedit {
@@ -12,6 +13,8 @@ class Debug : public EditorTab {
   void Tick() override;
 
  public:
-  inline Debug(const std::string &name) : EditorTab(name) {};
+  inline Debug(const std::string &name) : EditorTab(name) {
+    flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize;
+  };
 };
 };  // namespace Voxedit

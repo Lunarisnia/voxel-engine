@@ -13,5 +13,11 @@ class World {
 
   static void AddObject(const std::shared_ptr<Object> &object);
   static void RemoveObject(std::shared_ptr<Object> &object);
+
+ public:
+  inline static const std::unordered_set<std::shared_ptr<Object>> &
+  GetWorldObjects() {
+    return worldObjects;
+  };
 };
 };  // namespace VoxelEngine
