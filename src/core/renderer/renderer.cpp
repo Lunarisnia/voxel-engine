@@ -62,6 +62,9 @@ void Renderer::SetViewport(int bottomLeftX, int bottomLeftY, int width,
 }
 
 void Renderer::Tick() {
+  if (mainCamera == nullptr) {
+    return;
+  }
   for (const std::shared_ptr<Mesh>& mesh : renderQueue) {
     drawMesh(mesh);
   }

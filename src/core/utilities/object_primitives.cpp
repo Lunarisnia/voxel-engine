@@ -44,9 +44,6 @@ std::shared_ptr<Object> ObjectPrimitives::GenerateCamera(std::string name) {
   std::shared_ptr<Object> cam = std::make_shared<Object>(name);
 
   std::shared_ptr<Camera> cameraComponent = cam->CreateComponent<Camera>();
-  if (Renderer::mainCamera == nullptr) {
-    Renderer::mainCamera = cam;
-  }
 
   return cam;
 }

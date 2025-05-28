@@ -11,6 +11,8 @@ class Renderer {
 
  public:
   static std::shared_ptr<Object> mainCamera;
+
+ public:
   static void AddToRenderQueue(const std::shared_ptr<Mesh>& mesh);
 
   static void Initialize();

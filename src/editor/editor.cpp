@@ -1,18 +1,30 @@
 #include "voxedit/editor.hpp"
+#include <memory>
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_glfw.h"
 #include "imgui.h"
 #include "voxedit/tabs/debug.hpp"
 #include "voxedit/tabs/hierarchy.hpp"
+#include "voxedit/tabs/inspector.hpp"
 #include "voxelengine/engine.hpp"
+#include "voxelengine/renderer/renderer.hpp"
+#include "voxelengine/utilities/object_primitives.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
+#include "voxelengine/world/world.hpp"
 using namespace Voxedit;
 
 void Editor::Initialize() {
   VoxelEngine::Engine::Initialize(800, 600, "Game");
 
   CreateTab<Debug>("Debug");
-  CreateTab<Hierarchy>("Debug");
+  CreateTab<Hierarchy>("Hierarchy");
+  CreateTab<Inspector>("Inspector");
+
+  // Create the main camera
+  std::shared_ptr<VoxelEngine::Object> mainCamera =
+      VoxelEngine::ObjectPrimitives::GenerateCamera("MainCamera");
+  VoxelEngine::Renderer::mainCamera = mainCamera;
+  VoxelEngine::World::AddObject(mainCamera);
 
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();

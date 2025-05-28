@@ -6,13 +6,9 @@
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
-#include "voxelengine/utilities/object_primitives.hpp"
 using namespace VoxelEngine;
 
 void World::Initialize() {
-  // Create the main camera
-  ObjectPrimitives::GenerateCamera("MainCamera");
-
   Renderer::SetBackgroundColor(0.3f, 0.3f, 0.3f, 1.0f);
   Logger::Log(LogCategory::INFO, "Initialized World", "World::Initialize");
 }

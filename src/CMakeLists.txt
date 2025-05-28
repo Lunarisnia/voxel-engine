@@ -68,6 +68,7 @@ add_executable(${PROJECT_NAME}
 	editor/editor.cpp
 	editor/tabs/debug.cpp
 	editor/tabs/hierarchy.cpp
+	editor/tabs/inspector.cpp
 )
 
 # inlcude
