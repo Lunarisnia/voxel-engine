@@ -67,6 +67,7 @@ add_executable(${PROJECT_NAME}
 	# Voxedit::Window
 	editor/editor.cpp
 	editor/tabs/debug.cpp
+	editor/tabs/hierarchy.cpp
 )
 
 # inlcude
