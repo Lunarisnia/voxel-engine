@@ -2,7 +2,6 @@
 #include <memory>
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/components/camera.hpp"
-#include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/shader/shader.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/utilities/procedural_mesh.hpp"
