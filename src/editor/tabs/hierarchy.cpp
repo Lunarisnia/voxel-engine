@@ -21,7 +21,6 @@ void Hierarchy::Tick() {
   const std::unordered_set<std::shared_ptr<VoxelEngine::Object>>& worldObjects =
       VoxelEngine::World::GetWorldObjects();
 
-  // TODO: there has to be a better way for this
   std::vector<const char*> items;
   std::vector<std::shared_ptr<VoxelEngine::Object>> objects;
   for (std::shared_ptr<VoxelEngine::Object> object : worldObjects) {
@@ -30,7 +29,6 @@ void Hierarchy::Tick() {
   }
 
   if (ImGui::ListBox("Objects", &itemIndex, items.data(), (int)items.size())) {
-    // TODO: send this information to the editor for the transform inspector
     Inspector::selectedObject = objects[itemIndex];
   }
 

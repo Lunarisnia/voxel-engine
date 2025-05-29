@@ -16,6 +16,13 @@ void World::Initialize() {
 
 void World::Tick() {
   for (const std::shared_ptr<Object> object : worldObjects) {
+    // TODO: REMOVE THIS
+    /*if (object->name == "MainCamera") {*/
+    /*  return;*/
+    /*}*/
+    /*object->transform->rotation.rotate(*/
+    /*    glm::radians(20.0f) * Time::deltaTime,*/
+    /*    glm::normalize(glm::vec3(0.5f, 0.5f, 0.1f)));*/
     object->Tick();
   }
 }

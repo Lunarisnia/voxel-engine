@@ -10,6 +10,8 @@ class Inspector : public EditorTab {
 
  public:
   void Tick() override;
+  void DrawComponents();
+  void DrawTransform();
 
  public:
   inline Inspector(const std::string &name) : EditorTab(name) {};

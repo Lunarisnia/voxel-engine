@@ -28,12 +28,18 @@ class Quaternion {
   inline Quaternion(float w, float x, float y, float z)
       : w(w), x(x), y(y), z(z) {};
   inline Quaternion() : w(1.0f), x(0.0f), y(0.0f), z(0.0f) {};
+  inline Quaternion(Vec3 euler) : w(0.0f), x(0.0f), y(0.0f), z(0.0f) {
+    glm::quat q = glm::quat(euler.toGlmVec3());
+    reassignQuaternion(q);
+  };
 
   inline void rotate(float angle, glm::vec3 axis) {
     glm::quat q = glm::quat(w, x, y, z) * glm::angleAxis(angle, axis);
     q = glm::normalize(q);
     reassignQuaternion(q);
   }
+
+  inline Vec3 GetEulerAngles() { return Vec3(glm::eulerAngles(getGlmQuat())); }
 
   inline Quaternion normalize() {
     glm::quat newQuat = getGlmQuat();
