@@ -16,6 +16,8 @@ class Texture {
 
   void SetTexture(int width, int height, unsigned char *data);
 
+  inline unsigned int GetTextureID() { return id; };
+
   inline void Bind() { glBindTexture(GL_TEXTURE_2D, id); };
   inline void LoadTexture(const std::string &path) {
     texturePath = path;
