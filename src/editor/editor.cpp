@@ -23,6 +23,7 @@ void Editor::Initialize() {
   // Create the main camera
   std::shared_ptr<VoxelEngine::Object> mainCamera =
       VoxelEngine::ObjectPrimitives::GenerateCamera("MainCamera");
+  mainCamera->transform->position.z = 5.0f;
   VoxelEngine::Renderer::mainCamera = mainCamera;
   VoxelEngine::World::AddObject(mainCamera);
 

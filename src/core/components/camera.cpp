@@ -13,8 +13,9 @@ glm::mat4 Camera::GetViewMatrix() {
   Vec3 up = o->transform->GetUpVector();
   Vec3 front = o->transform->GetForwardVector();
 
-  glm::mat4 view = glm::lookAt(position.ToGlm(),
-                               position.ToGlm() + front.ToGlm(), up.ToGlm());
+  glm::mat4 view =
+      glm::lookAt(o->transform->position.ToGlm(),
+                  o->transform->position.ToGlm() + front.ToGlm(), up.ToGlm());
 
   return view;
 }

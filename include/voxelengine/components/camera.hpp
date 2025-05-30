@@ -1,14 +1,12 @@
 #pragma once
 #include "glm/ext/matrix_float4x4.hpp"
 #include "voxelengine/components/component.hpp"
-#include "voxelengine/math/vec3.hpp"
 namespace VoxelEngine {
 class Camera : public Component {
   MAKE_UNIQUE_COMPONENT();
   MAKE_COMPONENT_TYPE(CAMERA);
 
  public:
-  Vec3 position = Vec3(0.0f, 0.0f, 5.0f);
   float fov = 45.0f;
   float near = 0.01f;
   float far = 100.0f;

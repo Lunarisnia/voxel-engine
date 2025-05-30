@@ -8,8 +8,6 @@ std::shared_ptr<VoxelEngine::Object> Inspector::selectedObject;
 void Inspector::Tick() {
   ImGui::Begin(name.c_str(), nullptr, flags);
   DrawComponents();
-  ImGui::ShowDemoWindow();
-
   ImGui::End();
 }
 
@@ -22,7 +20,6 @@ void Inspector::DrawTransform() {
       ImGui::DragFloat3("Position", &selectedObject->transform->position.x,
                         0.005f);
       ImGui::DragFloat3("Scale", &selectedObject->transform->scale.x, 0.005f);
-      // TODO: this needs to be modified as a euler angle to be uniform
       ImGui::DragFloat3("Rotation", &placeholder.x, 0.005f);
       selectedObject->transform->SetRotationEuler(placeholder);
     }
