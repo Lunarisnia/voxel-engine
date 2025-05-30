@@ -13,15 +13,16 @@ void Inspector::Tick() {
 
 void Inspector::DrawComponents() { DrawTransform(); }
 
-VoxelEngine::Vec3 placeholder(0.0f);
 void Inspector::DrawTransform() {
   if (ImGui::CollapsingHeader("Transform")) {
     if (selectedObject != nullptr) {
       ImGui::DragFloat3("Position", &selectedObject->transform->position.x,
                         0.005f);
       ImGui::DragFloat3("Scale", &selectedObject->transform->scale.x, 0.005f);
-      ImGui::DragFloat3("Rotation", &placeholder.x, 0.005f);
-      selectedObject->transform->SetRotationEuler(placeholder);
+      ImGui::DragFloat3("Rotation", &selectedObject->transform->rotationEuler.x,
+                        0.005f);
+      selectedObject->transform->SetRotationEuler(
+          selectedObject->transform->rotationEuler);
     }
   }
 }
