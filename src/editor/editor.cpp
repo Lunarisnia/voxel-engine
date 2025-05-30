@@ -14,8 +14,9 @@
 using namespace Voxedit;
 
 void Editor::Initialize() {
-  VoxelEngine::Engine::Initialize(800, 600, "Game");
+  VoxelEngine::Engine::Initialize(1280, 800, "Voxel Engine");
 
+  /*CreateTab<Viewport>("Viewport");*/
   CreateTab<Debug>("Debug");
   CreateTab<Hierarchy>("Hierarchy");
   CreateTab<Inspector>("Inspector");
@@ -30,7 +31,7 @@ void Editor::Initialize() {
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
 
-  ImGuiIO io = ImGui::GetIO();
+  ImGuiIO &io = ImGui::GetIO();
   io.ConfigFlags |=
       ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
   io.ConfigFlags |=
@@ -43,6 +44,10 @@ void Editor::Initialize() {
 
 void Editor::Render() {
   newFrame();
+  /*ImGui::ShowDemoWindow();*/
+  /*if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {*/
+  /*  ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());*/
+  /*}*/
 
   for (const std::shared_ptr<EditorTab> &tab : tabs) {
     tab->Tick();

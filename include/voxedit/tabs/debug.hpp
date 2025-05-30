@@ -14,7 +14,7 @@ class Debug : public EditorTab {
 
  public:
   inline Debug(const std::string &name) : EditorTab(name) {
-    flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize;
+    flags = ImGuiWindowFlags_NoCollapse;
   };
 };
 };  // namespace Voxedit

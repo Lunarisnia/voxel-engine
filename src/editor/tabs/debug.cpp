@@ -6,8 +6,8 @@
 using namespace Voxedit;
 
 void Debug::Tick() {
-  ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));
-  ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
+  /*ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));*/
+  /*ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));*/
   ImGui::Begin(name.c_str(), nullptr, flags);
 
   ImGuiIO io = ImGui::GetIO();

@@ -15,7 +15,6 @@ std::map<uint64_t, const std::shared_ptr<VoxelEngine::Object>&>
     Hierarchy::hierarchyItem;
 
 void Hierarchy::Tick() {
-  ImGui::SetNextWindowPos(ImVec2(500.0f, 0.0f));
   ImGui::Begin("Hierarchy", nullptr, flags);
 
   const std::unordered_set<std::shared_ptr<VoxelEngine::Object>>& worldObjects =
