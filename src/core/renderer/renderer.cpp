@@ -1,5 +1,6 @@
 #include "glad/glad.h"
 #include "voxelengine/renderer/renderer.hpp"
+#include <iostream>
 #include <memory>
 #include "voxelengine/components/camera.hpp"
 #include "voxelengine/log/logger.hpp"
@@ -18,7 +19,6 @@ void Renderer::Initialize() {
 #else
   SetViewport(0, 0, width * 2, height * 2);
 #endif
-
   glEnable(GL_DEPTH_TEST);
 
   Logger::Log(LogCategory::INFO, "Initialized Renderer",
