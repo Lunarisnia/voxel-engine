@@ -1,7 +1,7 @@
 #include "glad/glad.h"
 #include "voxelengine/renderer/renderer.hpp"
-#include <iostream>
 #include <memory>
+#include <vector>
 #include "voxelengine/components/camera.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
@@ -9,6 +9,10 @@
 using namespace VoxelEngine;
 
 std::shared_ptr<Object> Renderer::mainCamera;
+std::vector<std::shared_ptr<Mesh>> Renderer::renderQueue;
+std::unique_ptr<Framebuffer> Renderer::framebuffer;
+std::shared_ptr<Texture> Renderer::renderTexture;
+std::unique_ptr<Renderbuffer> Renderer::renderbuffer;
 
 void Renderer::Initialize() {
   int width = VoxelWindow::width;
@@ -21,6 +25,20 @@ void Renderer::Initialize() {
 #endif
   glEnable(GL_DEPTH_TEST);
 
+  framebuffer = std::make_unique<Framebuffer>();
+  framebuffer->Bind();
+  // TODO: set to screen width and height
+  renderbuffer = std::make_unique<Renderbuffer>(800, 600);
+  renderTexture = std::make_shared<Texture>();
+
+  renderTexture->SetTexture(800, 600, nullptr);
+  framebuffer->SetTexture(renderTexture);
+  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
+    Logger::Log(LogCategory::INFO, "Framebuffer initialized",
+                "Renderer::Initialize");
+  }
+  framebuffer->Unbind();
+
   Logger::Log(LogCategory::INFO, "Initialized Renderer",
               "Renderer::Initialize");
 }
@@ -30,6 +48,7 @@ void Renderer::AddToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
+  framebuffer->Bind();
   Object* owner = mesh->GetOwner();
   if (!owner->isActive) {
     return;
@@ -48,6 +67,7 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
 
   glBindVertexArray(mesh->GetVAO());
   glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());
+  framebuffer->Unbind();
 }
 
 void Renderer::SetBackgroundColor(float r, float g, float b, float a) {

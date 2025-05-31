@@ -54,9 +54,12 @@ add_executable(${PROJECT_NAME}
 	# Texture
 	core/texture/texture.cpp
 
+	# framebuffer
+	core/framebuffer/framebuffer.cpp
+	core/renderbuffer/renderbuffer.cpp
+
 	# stbi image
 	vendor/stbi_image/stbi_image.cpp
-
 
 	# Imgui
 	${SOURCES}

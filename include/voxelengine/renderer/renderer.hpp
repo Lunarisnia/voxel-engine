@@ -3,10 +3,16 @@
 #include <vector>
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/components/mesh.hpp"
+#include "voxelengine/framebuffer/framebuffer.hpp"
+#include "voxelengine/renderbuffer/renderbuffer.hpp"
+#include "voxelengine/texture/texture.hpp"
 namespace VoxelEngine {
 class Renderer {
  private:
-  inline static std::vector<std::shared_ptr<Mesh>> renderQueue;
+  static std::vector<std::shared_ptr<Mesh>> renderQueue;
+  static std::unique_ptr<Framebuffer> framebuffer;
+  static std::unique_ptr<Renderbuffer> renderbuffer;
+  static std::shared_ptr<Texture> renderTexture;
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:

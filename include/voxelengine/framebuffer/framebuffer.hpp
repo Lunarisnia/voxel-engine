@@ -4,11 +4,11 @@
 namespace VoxelEngine {
 class Framebuffer {
  private:
-  unsigned int fbo;
-  unsigned int rbo;
+  unsigned int id;
 
  public:
   void Bind();
+  void Unbind();
   void SetTexture(std::shared_ptr<Texture> texture);
 
  public:
