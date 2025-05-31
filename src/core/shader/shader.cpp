@@ -30,7 +30,7 @@ void Shader::Use() {
 
 GLuint Shader::createShader(ShaderType type) {
   GLuint id = glCreateShader(type);
-  GlErrorHandler::Log(errorPrefix);
+  GlErrorHandler::Log(errorPrefix + "::createShader");
   return id;
 }
 

@@ -6,6 +6,7 @@
 #include "voxedit/tabs/debug.hpp"
 #include "voxedit/tabs/hierarchy.hpp"
 #include "voxedit/tabs/inspector.hpp"
+#include "voxedit/tabs/viewport.hpp"
 #include "voxelengine/engine.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
@@ -16,7 +17,7 @@ using namespace Voxedit;
 void Editor::Initialize() {
   VoxelEngine::Engine::Initialize(1280, 800, "Voxel Engine");
 
-  /*CreateTab<Viewport>("Viewport");*/
+  CreateTab<Viewport>("Viewport");
   CreateTab<Debug>("Debug");
   CreateTab<Hierarchy>("Hierarchy");
   CreateTab<Inspector>("Inspector");

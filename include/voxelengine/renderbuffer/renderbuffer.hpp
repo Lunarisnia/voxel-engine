@@ -9,6 +9,7 @@ class Renderbuffer {
 
  public:
   void Bind();
+  void Unbind();
 
  public:
   Renderbuffer(int width, int height);

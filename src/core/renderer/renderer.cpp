@@ -18,26 +18,28 @@ void Renderer::Initialize() {
   int width = VoxelWindow::width;
   int height = VoxelWindow::height;
 
-#if defined(WIN32)
-  SetViewport(0, 0, width, height);
-#else
-  SetViewport(0, 0, width * 2, height * 2);
-#endif
   glEnable(GL_DEPTH_TEST);
 
+  // FIXME: black screen on viewport
   framebuffer = std::make_unique<Framebuffer>();
   framebuffer->Bind();
   // TODO: set to screen width and height
-  renderbuffer = std::make_unique<Renderbuffer>(800, 600);
   renderTexture = std::make_shared<Texture>();
+  renderbuffer = std::make_unique<Renderbuffer>(800, 600);
 
-  renderTexture->SetTexture(800, 600, nullptr);
+  renderTexture->SetTexture(800, 600, NULL);
   framebuffer->SetTexture(renderTexture);
   if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
     Logger::Log(LogCategory::INFO, "Framebuffer initialized",
                 "Renderer::Initialize");
   }
   framebuffer->Unbind();
+
+#if defined(WIN32)
+  SetViewport(0, 0, width, height);
+#else
+  SetViewport(0, 0, width * 2, height * 2);
+#endif
 
   Logger::Log(LogCategory::INFO, "Initialized Renderer",
               "Renderer::Initialize");
@@ -48,7 +50,7 @@ void Renderer::AddToRenderQueue(const std::shared_ptr<Mesh>& mesh) {
 }
 
 void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
-  framebuffer->Bind();
+  /*framebuffer->Bind();*/
   Object* owner = mesh->GetOwner();
   if (!owner->isActive) {
     return;
@@ -67,7 +69,8 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
 
   glBindVertexArray(mesh->GetVAO());
   glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());
-  framebuffer->Unbind();
+
+  /*framebuffer->Unbind();*/
 }
 
 void Renderer::SetBackgroundColor(float r, float g, float b, float a) {
