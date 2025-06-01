@@ -16,11 +16,13 @@ void Engine::Initialize(int width, int height, const char *title) {
 }
 
 void Engine::Tick() {
+  VoxelWindow::PollEvent();
+  Renderer::framebuffer->Bind();
+  Renderer::Clear();
   Time::Tick();
   World::Tick();
-  Renderer::Clear();
   Renderer::Tick();
-  VoxelWindow::PollEvent();
+  Renderer::framebuffer->Unbind();
 }
 
 // TODO: add glfw keycode as our own constant

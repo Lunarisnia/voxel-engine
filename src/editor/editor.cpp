@@ -45,10 +45,9 @@ void Editor::Initialize() {
 
 void Editor::Render() {
   newFrame();
-  /*ImGui::ShowDemoWindow();*/
-  /*if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {*/
-  /*  ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());*/
-  /*}*/
+  if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
+  }
 
   for (const std::shared_ptr<EditorTab> &tab : tabs) {
     tab->Tick();

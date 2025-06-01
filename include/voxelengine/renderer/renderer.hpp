@@ -10,11 +10,11 @@ namespace VoxelEngine {
 class Renderer {
  private:
   static std::vector<std::shared_ptr<Mesh>> renderQueue;
-  static std::unique_ptr<Framebuffer> framebuffer;
-  static std::unique_ptr<Renderbuffer> renderbuffer;
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:
+  static std::unique_ptr<Framebuffer> framebuffer;
+  static std::unique_ptr<Renderbuffer> renderbuffer;
   static std::shared_ptr<Object> mainCamera;
   static std::shared_ptr<Texture> renderTexture;
 
