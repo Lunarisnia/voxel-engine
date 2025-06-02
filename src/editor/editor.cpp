@@ -17,17 +17,17 @@ using namespace Voxedit;
 void Editor::Initialize() {
   VoxelEngine::Engine::Initialize(1280, 800, "Voxel Engine");
 
-  CreateTab<Viewport>("Viewport");
-  CreateTab<Debug>("Debug");
-  CreateTab<Hierarchy>("Hierarchy");
-  CreateTab<Inspector>("Inspector");
-
   // Create the main camera
   std::shared_ptr<VoxelEngine::Object> mainCamera =
       VoxelEngine::ObjectPrimitives::GenerateCamera("MainCamera");
   mainCamera->transform->position.z = 5.0f;
   VoxelEngine::Renderer::mainCamera = mainCamera;
   VoxelEngine::World::AddObject(mainCamera);
+
+  CreateTab<Viewport>("Viewport");
+  CreateTab<Debug>("Debug");
+  CreateTab<Hierarchy>("Hierarchy");
+  CreateTab<Inspector>("Inspector");
 
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();

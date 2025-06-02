@@ -4,7 +4,9 @@
 #include <string>
 #include "imgui.h"
 #include "voxedit/tabs/editor_tab.hpp"
+#include "voxedit/tabs/inspector.hpp"
 #include "voxelengine/object/object.hpp"
+#include "voxelengine/renderer/renderer.hpp"
 namespace Voxedit {
 class Hierarchy : public EditorTab {
  public:
@@ -21,6 +23,7 @@ class Hierarchy : public EditorTab {
  public:
   inline Hierarchy(const std::string& name) : EditorTab(name) {
     flags = ImGuiWindowFlags_NoCollapse;
+    Inspector::selectedObject = VoxelEngine::Renderer::mainCamera;
   };
 };
 };  // namespace Voxedit

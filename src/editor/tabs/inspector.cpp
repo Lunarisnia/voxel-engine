@@ -14,15 +14,15 @@ void Inspector::Tick() {
 void Inspector::DrawComponents() { DrawTransform(); }
 
 void Inspector::DrawTransform() {
-  if (ImGui::CollapsingHeader("Transform")) {
-    if (selectedObject != nullptr) {
-      ImGui::DragFloat3("Position", &selectedObject->transform->position.x,
-                        0.005f);
-      ImGui::DragFloat3("Scale", &selectedObject->transform->scale.x, 0.005f);
-      ImGui::DragFloat3("Rotation", &selectedObject->transform->rotationEuler.x,
-                        0.005f);
-      selectedObject->transform->SetRotationEuler(
-          selectedObject->transform->rotationEuler);
-    }
+  ImGui::ShowDemoWindow();
+  ImGui::SeparatorText("Transform");
+  if (selectedObject != nullptr) {
+    ImGui::DragFloat3("Position", &selectedObject->transform->position.x,
+                      0.005f);
+    ImGui::DragFloat3("Scale", &selectedObject->transform->scale.x, 0.005f);
+    ImGui::DragFloat3("Rotation", &selectedObject->transform->rotationEuler.x,
+                      0.005f);
+    selectedObject->transform->SetRotationEuler(
+        selectedObject->transform->rotationEuler);
   }
 }

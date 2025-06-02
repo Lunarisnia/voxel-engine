@@ -2,6 +2,7 @@
 #include <memory>
 #include <string>
 #include "voxedit/tabs/editor_tab.hpp"
+#include "voxelengine/math/vec3.hpp"
 #include "voxelengine/object/object.hpp"
 namespace Voxedit {
 class Inspector : public EditorTab {
