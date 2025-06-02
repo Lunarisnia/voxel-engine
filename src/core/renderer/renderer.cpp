@@ -76,6 +76,10 @@ void Renderer::Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 void Renderer::SetViewport(int bottomLeftX, int bottomLeftY, int width,
                            int height) {
+  VoxelEngine::VoxelWindow::width = width;
+  VoxelEngine::VoxelWindow::height = height;
+  renderTexture->SetTexture(width, height, NULL);
+  renderbuffer->Resize(width, height);
   glViewport(bottomLeftX, bottomLeftY, width, height);
 }
 
