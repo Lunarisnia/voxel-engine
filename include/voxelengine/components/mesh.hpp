@@ -11,17 +11,22 @@ class Mesh : public Component {
   MAKE_COMPONENT_TYPE(MESH);
 
  private:
-  GLuint VAO, VBO;
+  GLuint VAO, VBO, EBO;
   std::vector<VertexData> vertices;
+  std::vector<int> indices;
 
  public:
-  Mesh();
-  Mesh(std::shared_ptr<Material> mat);
   std::shared_ptr<Material> material;
 
   void SetupMesh();
   GLuint GetVAO();
   int GetVerticeSize();
+  int GetIndiceSize();
   void AddVertexData(VertexData vertexData);
+  void AddIndex(int index);
+
+ public:
+  Mesh();
+  Mesh(std::shared_ptr<Material> mat);
 };
 }  // namespace VoxelEngine

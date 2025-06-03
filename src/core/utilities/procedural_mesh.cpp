@@ -134,31 +134,33 @@ void ProceduralMesh::GeneratePlaneMesh(std::shared_ptr<Mesh> &mesh) {
     vData.position = glm::vec3(0.5f, 0.5f, 0.0f);
     vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
     mesh->AddVertexData(vData);
+    mesh->AddIndex(0);
   }
   {
     vData.position = glm::vec3(0.5f, -0.5f, 0.0f);
     vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
     mesh->AddVertexData(vData);
+    mesh->AddIndex(1);
   }
   {
     vData.position = glm::vec3(-0.5f, -0.5f, 0.0f);
     vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
     mesh->AddVertexData(vData);
-  }
-
-  {
-    vData.position = glm::vec3(0.5f, 0.5f, 0.0f);
-    vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
-    mesh->AddVertexData(vData);
+    mesh->AddIndex(2);
   }
   {
     vData.position = glm::vec3(-0.5f, 0.5f, 0.0f);
     vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
     mesh->AddVertexData(vData);
+    mesh->AddIndex(3);
   }
   {
     vData.position = glm::vec3(-0.5f, -0.5f, 0.0f);
     vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
     mesh->AddVertexData(vData);
+    mesh->AddIndex(2);
+  }
+  {
+    mesh->AddIndex(0);
   }
 }

@@ -65,7 +65,9 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
   }
 
   glBindVertexArray(mesh->GetVAO());
-  glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());
+  /*glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());*/
+  glDrawElements(GL_TRIANGLES, mesh->GetIndiceSize(), GL_UNSIGNED_INT, 0);
+  glBindVertexArray(0);
 }
 
 void Renderer::SetBackgroundColor(float r, float g, float b, float a) {

@@ -14,8 +14,12 @@ void Debug::Tick() {
   ImGuiIO io = ImGui::GetIO();
   ImGui::Text("Framerate: %.1f", io.Framerate);
 
-  if (ImGui::Button("Create Object")) {
+  if (ImGui::Button("Create Cube")) {
     object = VoxelEngine::ObjectPrimitives::GenerateCube("Cube");
+    VoxelEngine::World::AddObject(object);
+  }
+  if (ImGui::Button("Create Plane")) {
+    object = VoxelEngine::ObjectPrimitives::GeneratePlane("Plane");
     VoxelEngine::World::AddObject(object);
   }
   if (ImGui::Button("Create Multi Voxel Cubes")) {
