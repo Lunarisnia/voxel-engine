@@ -1,13 +1,14 @@
 #include "voxedit/tabs/debug.hpp"
+#include <format>
 #include <memory>
 #include "imgui.h"
+#include "voxelengine/math/vec3.hpp"
+#include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
 #include "voxelengine/world/world.hpp"
 using namespace Voxedit;
 
 void Debug::Tick() {
-  /*ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));*/
-  /*ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));*/
   ImGui::Begin(name.c_str(), nullptr, flags);
 
   ImGuiIO io = ImGui::GetIO();
@@ -16,6 +17,23 @@ void Debug::Tick() {
   if (ImGui::Button("Create Object")) {
     object = VoxelEngine::ObjectPrimitives::GenerateCube("Cube");
     VoxelEngine::World::AddObject(object);
+  }
+  if (ImGui::Button("Create Multi Voxel Cubes")) {
+    for (int x = 0; x < 4; x++) {
+      for (int y = 0; y < 4; y++) {
+        for (int z = 0; z < 4; z++) {
+          object = VoxelEngine::ObjectPrimitives::GenerateCube(
+              std::format("Cube ({},{},{})", x, y, z));
+          object->transform->position = VoxelEngine::Vec3(x, y, z - 5.0f);
+          VoxelEngine::World::AddObject(object);
+        }
+      }
+    }
+
+    VoxelEngine::Renderer::mainCamera->transform->SetRotationEuler(
+        VoxelEngine::Vec3(-0.695f, -0.500, 0.00f));
+    VoxelEngine::Renderer::mainCamera->transform->position =
+        VoxelEngine::Vec3(-3.4f, 6.545f, 2.353f);
   }
 
   if (object != nullptr) {

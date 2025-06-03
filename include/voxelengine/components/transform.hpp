@@ -30,10 +30,11 @@ class Transform : public Component {
   inline static Vec3 worldRight = Vec3(1.0f, 0.0f, 0.0f);
   inline static Vec3 worldUp = Vec3(0.0f, 1.0f, 0.0f);
 
-  inline void SetRotationEuler(Vec3 rotationEuler) {
+  inline void SetRotationEuler(Vec3 newRotationEuler) {
     Quaternion newRotation =
         Quaternion(Vec3(rotationEuler.y, rotationEuler.x, rotationEuler.z));
 
+    rotationEuler = newRotationEuler;
     rotation = newRotation;
   }
 
