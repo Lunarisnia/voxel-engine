@@ -52,6 +52,10 @@ void Viewport::TickGizmo() {
                        glm::value_ptr(model));
 
   if (ImGuizmo::IsUsing()) {
-    std::cout << "USING" << std::endl;
+    Inspector::selectedObject->GetComponent<VoxelEngine::Transform>()
+        ->SetPosition(VoxelEngine::Vec3(model[3][0], model[3][1], model[3][2]));
   }
 }
+// TODO: Support different modes
+// TODO: Support rotation
+// TODO: Support scaling
