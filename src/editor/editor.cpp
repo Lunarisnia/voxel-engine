@@ -1,9 +1,11 @@
 #include "voxedit/editor.hpp"
 #include <memory>
+#include <string>
 #include "ImGuizmo.h"
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_glfw.h"
 #include "imgui.h"
+#include "imgui_internal.h"
 #include "voxedit/tabs/debug.hpp"
 #include "voxedit/tabs/hierarchy.hpp"
 #include "voxedit/tabs/inspector.hpp"
@@ -47,14 +49,46 @@ void Editor::Initialize() {
 void Editor::Render() {
   newFrame();
 
+  ImGuiViewport *viewport = ImGui::GetMainViewport();
+  ImGui::SetNextWindowPos(viewport->WorkPos);
+  ImGui::SetNextWindowSize(viewport->WorkSize);
+  ImGui::SetNextWindowViewport(viewport->ID);
+
+  std::string name = "Editor";
+  ImGui::Begin(name.c_str(), nullptr,
+               ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar |
+                   ImGuiWindowFlags_NoDocking);
+
   if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
-    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(),
-                                 ImGuiDockNodeFlags_PassthruCentralNode);
+    const ImGuiID windowId = ImGui::GetID(name.c_str());
+    if (ImGui::DockBuilderGetNode(windowId) == nullptr) {
+      ImGui::DockBuilderRemoveNode(windowId);
+
+      ImGui::DockBuilderAddNode(windowId, ImGuiDockNodeFlags_DockSpace);
+      ImGui::DockBuilderSetNodeSize(windowId, ImGui::GetWindowSize());
+
+      ImGuiID viewportId = windowId;
+      ImGuiID hierarchyId = ImGui::DockBuilderSplitNode(
+          viewportId, ImGuiDir_Left, 0.50f, nullptr, &viewportId);
+      ImGuiID inspectorId = ImGui::DockBuilderSplitNode(
+          viewportId, ImGuiDir_Right, 0.50f, nullptr, &viewportId);
+      ImGuiID debugId = ImGui::DockBuilderSplitNode(
+          inspectorId, ImGuiDir_Down, 0.50f, nullptr, &inspectorId);
+
+      ImGui::DockBuilderDockWindow("Viewport", viewportId);
+      ImGui::DockBuilderDockWindow("Hierarchy", hierarchyId);
+      ImGui::DockBuilderDockWindow("Inspector", inspectorId);
+      ImGui::DockBuilderDockWindow("Debug", debugId);
+    }
+    ImGui::DockSpace(windowId, ImVec2(0.0f, 0.0f),
+                     ImGuiDockNodeFlags_PassthruCentralNode);
   }
 
   for (const std::shared_ptr<EditorTab> &tab : tabs) {
     tab->Tick();
   }
+
+  ImGui::End();
 
   drawFrame();
 }
