@@ -5,6 +5,7 @@ namespace Voxedit {
 class Viewport : public EditorTab {
  public:
   void Tick() override;
+  void TickGizmo();
 
  public:
   inline Viewport(const std::string &name) : EditorTab(name) {}

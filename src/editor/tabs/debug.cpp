@@ -27,7 +27,7 @@ void Debug::Tick() {
     for (int x = 0; x < dimension; x++) {
       for (int y = 0; y < dimension; y++) {
         for (int z = 0; z < dimension; z++) {
-          object = VoxelEngine::ObjectPrimitives::GeneratePlane(
+          object = VoxelEngine::ObjectPrimitives::GenerateCube(
               std::format("Cube ({},{},{})", x, y, z));
           object->transform->position = VoxelEngine::Vec3(x, y, z - 5.0f);
           VoxelEngine::World::AddObject(object);

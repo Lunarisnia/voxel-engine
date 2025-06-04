@@ -1,5 +1,6 @@
 #include "voxedit/editor.hpp"
 #include <memory>
+#include "ImGuizmo.h"
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_glfw.h"
 #include "imgui.h"
@@ -45,8 +46,10 @@ void Editor::Initialize() {
 
 void Editor::Render() {
   newFrame();
+
   if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable) {
-    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(),
+                                 ImGuiDockNodeFlags_PassthruCentralNode);
   }
 
   for (const std::shared_ptr<EditorTab> &tab : tabs) {
@@ -68,6 +71,7 @@ void Editor::newFrame() {
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplGlfw_NewFrame();
   ImGui::NewFrame();
+  ImGuizmo::BeginFrame();
 }
 
 void Editor::drawFrame() {

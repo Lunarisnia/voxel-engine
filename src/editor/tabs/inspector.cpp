@@ -14,7 +14,6 @@ void Inspector::Tick() {
 void Inspector::DrawComponents() { DrawTransform(); }
 
 void Inspector::DrawTransform() {
-  ImGui::ShowDemoWindow();
   ImGui::SeparatorText("Transform");
   if (selectedObject != nullptr) {
     ImGui::DragFloat3("Position", &selectedObject->transform->position.x,
