@@ -23,10 +23,11 @@ void Debug::Tick() {
     VoxelEngine::World::AddObject(object);
   }
   if (ImGui::Button("Create Multi Voxel Cubes")) {
-    for (int x = 0; x < 4; x++) {
-      for (int y = 0; y < 4; y++) {
-        for (int z = 0; z < 4; z++) {
-          object = VoxelEngine::ObjectPrimitives::GenerateCube(
+    int dimension = 16;
+    for (int x = 0; x < dimension; x++) {
+      for (int y = 0; y < dimension; y++) {
+        for (int z = 0; z < dimension; z++) {
+          object = VoxelEngine::ObjectPrimitives::GeneratePlane(
               std::format("Cube ({},{},{})", x, y, z));
           object->transform->position = VoxelEngine::Vec3(x, y, z - 5.0f);
           VoxelEngine::World::AddObject(object);
