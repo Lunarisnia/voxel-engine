@@ -1,4 +1,5 @@
 #include "imgui_internal.h"
+#include "voxelengine/input_manager/input_manager.hpp"
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "voxedit/tabs/viewport.hpp"
 #include <iostream>
@@ -47,9 +48,8 @@ void Viewport::TickGizmo() {
       Inspector::selectedObject->GetComponent<VoxelEngine::Transform>()
           ->GetTransformMatrix();
 
-  ImGuizmo::Manipulate(glm::value_ptr(view), glm::value_ptr(proj),
-                       ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::MODE::LOCAL,
-                       glm::value_ptr(model));
+  ImGuizmo::Manipulate(glm::value_ptr(view), glm::value_ptr(proj), operation,
+                       mode, glm::value_ptr(model));
 
   if (ImGuizmo::IsUsing()) {
     Inspector::selectedObject->GetComponent<VoxelEngine::Transform>()
