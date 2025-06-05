@@ -61,29 +61,30 @@ void Viewport::TickGizmo() {
   glm::mat4 model =
       Inspector::selectedObject->GetComponent<VoxelEngine::Transform>()
           ->GetTransformMatrix();
-  glm::mat4 delta;
+  // FIXME: use delta instead of modifying the matrix directly later
+  /*glm::mat4 delta;*/
 
-  bool isModified = ImGuizmo::Manipulate(
-      glm::value_ptr(view), glm::value_ptr(proj), operation, mode,
-      glm::value_ptr(model), glm::value_ptr(delta));
+  bool isModified =
+      ImGuizmo::Manipulate(glm::value_ptr(view), glm::value_ptr(proj),
+                           operation, mode, glm::value_ptr(model));
 
   if (ImGuizmo::IsUsing() && isModified) {
     VoxelEngine::Vec3 position;
     VoxelEngine::Vec3 rotationEuler;
     VoxelEngine::Vec3 scale;
-    ImGuizmo::DecomposeMatrixToComponents(glm::value_ptr(delta), &position.x,
+    ImGuizmo::DecomposeMatrixToComponents(glm::value_ptr(model), &position.x,
                                           &rotationEuler.x, &scale.x);
 
     std::shared_ptr<VoxelEngine::Transform> transform =
         Inspector::selectedObject->GetComponent<VoxelEngine::Transform>();
     if (operation == ImGuizmo::OPERATION::TRANSLATE) {
-      transform->Translate(position);
+      transform->SetPosition(position);
     } else if (operation == ImGuizmo::OPERATION::ROTATE) {
       // FIXME: Rotation is also acting weird in some angles
-      glm::quat rot = glm::quat(rotationEuler.Deg2Rad().toGlmVec3());
-      transform->SetRotationEuler(glm::eulerAngles(rot));
+      transform->SetRotationEuler(rotationEuler.Deg2Rad());
     } else if (operation == ImGuizmo::OPERATION::SCALE) {
-      // FIXME: no idea why its quite weird
+      // FIXME: no idea why its quite weird on some angle
+      // FIXME: Scale and rotate don't really play well for some reason
       transform->SetScale(scale);
     }
   }

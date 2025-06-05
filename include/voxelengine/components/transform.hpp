@@ -33,7 +33,7 @@ class Transform : public Component {
 
   inline void SetRotationEuler(Vec3 newRotationEuler) {
     Quaternion newRotation =
-        Quaternion(Vec3(rotationEuler.y, rotationEuler.x, rotationEuler.z));
+        Quaternion(Vec3(rotationEuler.x, rotationEuler.y, rotationEuler.z));
 
     rotationEuler = newRotationEuler;
     rotation = newRotation;
