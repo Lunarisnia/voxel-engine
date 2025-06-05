@@ -9,8 +9,6 @@
 namespace VoxelEngine {
 class Quaternion {
  private:
-  inline Quaternion(glm::quat newQuat) { reassignQuaternion(newQuat); };
-
   inline void reassignQuaternion(glm::quat q) {
     w = q.w;
     x = q.x;
@@ -32,6 +30,7 @@ class Quaternion {
     glm::quat q = glm::quat(euler.toGlmVec3());
     reassignQuaternion(q);
   };
+  inline Quaternion(glm::quat newQuat) { reassignQuaternion(newQuat); };
 
   inline void rotate(float angle, glm::vec3 axis) {
     glm::quat q = glm::quat(w, x, y, z) * glm::angleAxis(angle, axis);

@@ -12,7 +12,6 @@ add_executable(${PROJECT_NAME}
 	core/voxel_window/voxel_window.cpp
 
 	# InputManager
-	core/input_manager/key_event.cpp
 	core/input_manager/input_manager.cpp
 
 	# Resource

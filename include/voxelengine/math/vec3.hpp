@@ -1,6 +1,7 @@
 #pragma once
 #include "glm/ext/vector_float3.hpp"
 #include "glm/geometric.hpp"
+#include "glm/trigonometric.hpp"
 namespace VoxelEngine {
 class Vec3 {
  private:
@@ -16,6 +17,8 @@ class Vec3 {
   inline glm::vec3 ToGlm() const { return glm::vec3(x, y, z); }
 
   inline glm::vec3 toGlmVec3() const { return glm::vec3(x, y, z); };
+
+  inline Vec3 Deg2Rad() const { return glm::radians(toGlmVec3()); }
 
   Vec3 operator*(const Vec3 &other) {
     glm::vec3 a = toGlmVec3();

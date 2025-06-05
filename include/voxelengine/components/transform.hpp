@@ -1,6 +1,7 @@
 #pragma once
 #include "glm/ext/matrix_transform.hpp"
 #include <glm/gtc/matrix_transform.hpp>
+#include "glm/ext/quaternion_geometric.hpp"
 #include "voxelengine/components/component.hpp"
 #include "voxelengine/math/quaternion.hpp"
 #include "voxelengine/math/vec3.hpp"
@@ -53,6 +54,11 @@ class Transform : public Component {
   }
 
   inline void SetPosition(Vec3 newPosition) { position = newPosition; }
+  inline void Translate(Vec3 translateValue) {
+    position = position + translateValue;
+  }
+
+  inline void SetScale(Vec3 newScale) { scale = newScale; }
 
   inline glm::mat4 GetTransformMatrix() const { return transformMatrix; }
 };
