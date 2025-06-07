@@ -19,10 +19,6 @@ void Mesh::SetupMesh() {
   glBufferData(GL_ARRAY_BUFFER, sizeof(VertexData) * vertices.size(),
                vertices.data(), GL_STATIC_DRAW);
 
-  indices.emplace_back(1);
-  indices.emplace_back(1);
-  indices.emplace_back(1);
-
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(),
                indices.data(), GL_STATIC_DRAW);

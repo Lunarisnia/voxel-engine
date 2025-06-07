@@ -3,7 +3,6 @@
 #include <memory>
 #include <string>
 #include "stbi_image/stbi_image.h"
-#include "voxedit/tabs/hierarchy.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
@@ -36,7 +35,7 @@ void World::AddObject(const std::shared_ptr<Object> &object) {
   std::shared_ptr<Mesh> mesh = object->GetComponent<Mesh>();
   if (mesh != nullptr) {
     Renderer::AddToRenderQueue(mesh);
-    Voxedit::Hierarchy::AddObjectToHierarchy(object->id, object);
+    /*Voxedit::Hierarchy::AddObjectToHierarchy(object->id, object);*/
   }
 }
 

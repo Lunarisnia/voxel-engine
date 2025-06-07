@@ -10,6 +10,7 @@ enum ComponentType {
   TRANSFORM,
   MESH,
   CAMERA,
+  CHUNK,
 };
 
 #define MAKE_UNIQUE_COMPONENT()             \

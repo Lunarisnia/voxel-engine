@@ -28,6 +28,7 @@ add_executable(${PROJECT_NAME}
 	core/components/mesh.cpp
 	core/components/transform.cpp
 	core/components/camera.cpp
+	core/components/chunk.cpp
 
 	# Material
 	core/material/material.cpp
