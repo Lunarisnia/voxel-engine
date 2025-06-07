@@ -41,6 +41,12 @@ void Debug::Tick() {
         VoxelEngine::Vec3(-3.4f, 6.545f, 2.353f);
   }
 
+  if (ImGui::Button("Create Chunk")) {
+    object = VoxelEngine::ObjectPrimitives::GenerateChunk("Chunk", 16);
+    object->transform->position.y = -10.0f;
+    VoxelEngine::World::AddObject(object);
+  }
+
   if (object != nullptr) {
     ImGui::DragFloat3("Position", &object->transform->position.x, 0.005f);
   }

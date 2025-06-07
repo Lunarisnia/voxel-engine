@@ -65,7 +65,9 @@ void Renderer::drawMesh(const std::shared_ptr<Mesh>& mesh) {
   }
 
   glBindVertexArray(mesh->GetVAO());
-  glDrawElements(GL_TRIANGLES, mesh->GetIndiceSize(), GL_UNSIGNED_INT, 0);
+  // TODO: Find a way to do chunk with an index
+  /*glDrawElements(GL_TRIANGLES, mesh->GetIndiceSize(), GL_UNSIGNED_INT, 0);*/
+  glDrawArrays(GL_TRIANGLES, 0, mesh->GetVerticeSize());
   glBindVertexArray(0);
 }
 

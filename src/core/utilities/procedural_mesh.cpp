@@ -4,6 +4,83 @@
 #include "voxelengine/vertex_data.hpp"
 using namespace VoxelEngine;
 
+void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
+                                   std::shared_ptr<Chunk> &chunk) {
+  float blockSize = 0.5f;
+  VertexData vData;
+  for (int i = 0; i < chunk->size; i++) {
+    for (int j = 0; j < chunk->size; j++) {
+      for (int k = 0; k < chunk->size; k++) {
+        float x = (float)i;
+        float y = (float)j;
+        float z = (float)k;
+        {  // Front face
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z + blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z + blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
+        {  // Up Face (y = 0.5)
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z - blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
+      }
+    }
+  }
+}
+
 void ProceduralMesh::GenerateCubeMesh(std::shared_ptr<Mesh> &mesh) {
   VertexData vData;
   // Front face (z = 0.5)
