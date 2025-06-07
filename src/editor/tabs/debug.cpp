@@ -2,6 +2,8 @@
 #include <format>
 #include <memory>
 #include "imgui.h"
+#include "voxelengine/components/chunk.hpp"
+#include "voxelengine/log/logger.hpp"
 #include "voxelengine/math/vec3.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
@@ -42,9 +44,18 @@ void Debug::Tick() {
   }
 
   if (ImGui::Button("Create Chunk")) {
-    object = VoxelEngine::ObjectPrimitives::GenerateChunk("Chunk", 16);
-    object->transform->position.y = -10.0f;
+    object = VoxelEngine::ObjectPrimitives::GenerateChunk("Chunk", 2);
+    object->transform->position.y = -2;
     VoxelEngine::World::AddObject(object);
+  }
+  if (ImGui::Button("Disable Block")) {
+    std::shared_ptr<VoxelEngine::Chunk> chunk =
+        object->GetComponent<VoxelEngine::Chunk>();
+    if (chunk != nullptr) {
+      VoxelEngine::Logger::Log(VoxelEngine::LogCategory::DEBUG,
+                               "Block disabled", "DisableBlock");
+      chunk->SetBlockActiveState(0, 0, 0, false);
+    }
   }
 
   if (object != nullptr) {

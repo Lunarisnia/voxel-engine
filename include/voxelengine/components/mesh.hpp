@@ -19,8 +19,10 @@ class Mesh : public Component {
   std::shared_ptr<Material> material;
 
   void SetupMesh();
+  void Invalidate();
   GLuint GetVAO();
   int GetVerticeSize();
+  void ClearVertice();
   int GetIndiceSize();
   void AddVertexData(VertexData vertexData);
   void AddIndex(int index);

@@ -31,6 +31,8 @@ void Mesh::SetupMesh() {
   glEnableVertexAttribArray(1);
 }
 
+void Mesh::ClearVertice() { vertices.clear(); }
+
 GLuint Mesh::GetVAO() { return VAO; }
 
 int Mesh::GetVerticeSize() { return vertices.size(); }

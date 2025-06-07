@@ -48,6 +48,37 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
           mesh->AddVertexData(vData);
         }
+        {  // Back face (z = -0.5)
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z - blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
         {  // Up Face (y = 0.5)
           vData.position = glm::vec3(x + blockSize, y + blockSize,
                                      z + blockSize);  // Top right
@@ -75,6 +106,99 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z - blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
+        {  // Down Face (y = -0.5)
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z + blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z - blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
+        {  // Left Face (x = -0.5)
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y - blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x - blockSize, y + blockSize,
+                                     z - blockSize);  // Top left
+          vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
+          mesh->AddVertexData(vData);
+        }
+        {  // Left Face (x = 0.5)
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z + blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z - blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom left
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y - blockSize,
+                                     z - blockSize);  // Top right
+          vData.textureCoordinate = glm::vec2(0.0f, 0.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
+                                     z + blockSize);  // Bottom right
+          vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          mesh->AddVertexData(vData);
+
+          vData.position = glm::vec3(x + blockSize, y + blockSize,
                                      z - blockSize);  // Top left
           vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
           mesh->AddVertexData(vData);
