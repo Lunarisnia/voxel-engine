@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include "voxelengine/block/block.hpp"
 #include "voxelengine/components/component.hpp"
 namespace VoxelEngine {
 class Chunk : public Component {
@@ -8,6 +10,7 @@ class Chunk : public Component {
  public:
   int size;
   // TODO: Reference to a block data structure
+  std::vector<std::vector<std::vector<Block>>> blocks;
 
  private:
  public:

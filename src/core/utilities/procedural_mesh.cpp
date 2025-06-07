@@ -11,6 +11,9 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
   for (int i = 0; i < chunk->size; i++) {
     for (int j = 0; j < chunk->size; j++) {
       for (int k = 0; k < chunk->size; k++) {
+        if (!chunk->blocks[i][j][k].isActive) {
+          continue;
+        }
         float x = (float)i;
         float y = (float)j;
         float z = (float)k;

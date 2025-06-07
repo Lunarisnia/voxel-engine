@@ -7,6 +7,7 @@
 #include "voxelengine/shader/shader.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/utilities/procedural_mesh.hpp"
+#include "voxelengine/utilities/procedural_world.hpp"
 using namespace VoxelEngine;
 
 std::shared_ptr<Object> ObjectPrimitives::GenerateCube(std::string name) {
@@ -51,6 +52,7 @@ std::shared_ptr<Object> ObjectPrimitives::GenerateChunk(const std::string &name,
   std::shared_ptr<Mesh> mesh = object->CreateComponent<Mesh>(material);
   std::shared_ptr<Chunk> chunk = object->CreateComponent<Chunk>(size);
 
+  ProceduralWorld::GenerateBlockChunk(chunk);
   ProceduralMesh::GenerateChunk(mesh, chunk);
   mesh->SetupMesh();
 

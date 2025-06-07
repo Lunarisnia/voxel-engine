@@ -36,12 +36,16 @@ add_executable(${PROJECT_NAME}
 	# Object
 	core/object/object.cpp
 
+	# Block
+	core/block/block.cpp
+
 	# Renderer
 	core/renderer/renderer.cpp
 	
 	# Utils
 	core/utilities/object_primitives.cpp
 	core/utilities/procedural_mesh.cpp
+	core/utilities/procedural_world.cpp
 
 	# World
 	core/world/world.cpp
