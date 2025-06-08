@@ -9,7 +9,6 @@
 #include "voxelengine/math/vec3.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
-#include "voxelengine/voxel_window/voxel_window.hpp"
 #include "voxelengine/world/world.hpp"
 using namespace Voxedit;
 
@@ -68,9 +67,15 @@ void Debug::Tick() {
       VoxelEngine::InputManager::mouse.position.x - Viewport::position.x;
   float yPos =
       VoxelEngine::InputManager::mouse.position.y - Viewport::position.y;
+
+  VoxelEngine::Vec2 ndcMouseCoord =
+      VoxelEngine::Vec2((xPos / Viewport::size.x) * 2.0f - 1.0f,
+                        (yPos / Viewport::size.y) * 2.0f - 1.0f);
   if (xPos >= 0.0f && xPos <= Viewport::size.x && yPos >= 0.0f &&
       yPos <= Viewport::size.y) {
     ImGui::Text("Scaled Mouse Coord: %.2f, %.2f", xPos, yPos);
+    ImGui::Text("NDC Mouse Coord: %.2f, %.2f", ndcMouseCoord.x,
+                -ndcMouseCoord.y);
   }
 
   if (object != nullptr) {
