@@ -48,13 +48,13 @@ void Debug::Tick() {
     object->transform->position.y = -2;
     VoxelEngine::World::AddObject(object);
   }
-  if (ImGui::Button("Disable Block")) {
+  if (ImGui::Button("Toggle Block")) {
     std::shared_ptr<VoxelEngine::Chunk> chunk =
         object->GetComponent<VoxelEngine::Chunk>();
     if (chunk != nullptr) {
       VoxelEngine::Logger::Log(VoxelEngine::LogCategory::DEBUG,
                                "Block disabled", "DisableBlock");
-      chunk->SetBlockActiveState(0, 0, 0, false);
+      chunk->SetBlockActiveState(0, 0, 0, !chunk->blocks[0][0][0].isActive);
     }
   }
 
