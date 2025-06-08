@@ -2,11 +2,14 @@
 #include <format>
 #include <memory>
 #include "imgui.h"
+#include "voxedit/tabs/viewport.hpp"
 #include "voxelengine/components/chunk.hpp"
+#include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/math/vec3.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/utilities/object_primitives.hpp"
+#include "voxelengine/voxel_window/voxel_window.hpp"
 #include "voxelengine/world/world.hpp"
 using namespace Voxedit;
 
@@ -56,6 +59,18 @@ void Debug::Tick() {
                                "ToggleBlock");
       chunk->SetBlockActiveState(0, 0, 0, !chunk->blocks[0][0][0].isActive);
     }
+  }
+
+  ImGui::Text("Mouse Coord: %.2f, %.2f",
+              VoxelEngine::InputManager::mouse.position.x,
+              VoxelEngine::InputManager::mouse.position.y);
+  float xPos =
+      VoxelEngine::InputManager::mouse.position.x - Viewport::position.x;
+  float yPos =
+      VoxelEngine::InputManager::mouse.position.y - Viewport::position.y;
+  if (xPos >= 0.0f && xPos <= Viewport::size.x && yPos >= 0.0f &&
+      yPos <= Viewport::size.y) {
+    ImGui::Text("Scaled Mouse Coord: %.2f, %.2f", xPos, yPos);
   }
 
   if (object != nullptr) {

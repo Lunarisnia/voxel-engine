@@ -17,6 +17,7 @@ void Engine::Initialize(int width, int height, const char *title) {
 
 void Engine::Tick() {
   VoxelWindow::PollEvent();
+  InputManager::PollMouse();
   Renderer::framebuffer->Bind();
   Renderer::Clear();
   Time::Tick();

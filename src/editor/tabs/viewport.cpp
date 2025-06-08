@@ -10,6 +10,7 @@
 #include "voxedit/tabs/inspector.hpp"
 #include "voxelengine/components/camera.hpp"
 #include "voxelengine/components/transform.hpp"
+#include "voxelengine/math/vec2.hpp"
 #include "voxelengine/math/vec3.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/renderer/renderer.hpp"
@@ -19,6 +20,11 @@ void Viewport::Tick() {
   ImGui::Begin("Viewport", nullptr, flags);
 
   ImVec2 region = ImGui::GetContentRegionAvail();
+  size = VoxelEngine::Vec2(region.x, region.y);
+
+  ImVec2 pos = ImGui::GetCursorScreenPos();
+  position = VoxelEngine::Vec2(pos.x, pos.y);
+
   VoxelEngine::Renderer::SetViewport(0, 0, region.x, region.y);
 
   ImGui::Image(
