@@ -45,7 +45,7 @@ void Debug::Tick() {
 
   if (ImGui::Button("Create Chunk")) {
     object = VoxelEngine::ObjectPrimitives::GenerateChunk("Chunk", 2);
-    object->transform->position.y = -2;
+    object->transform->position.y = -2.0f;
     VoxelEngine::World::AddObject(object);
   }
   if (ImGui::Button("Toggle Block")) {
