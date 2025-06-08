@@ -21,6 +21,7 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.position = glm::vec3(x + blockSize, y + blockSize,
                                      z + blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          vData.normal = Vec3(0.0f, 0.0f, 1.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x + blockSize, y - blockSize,
@@ -52,6 +53,7 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.position = glm::vec3(x + blockSize, y + blockSize,
                                      z - blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 1.0f);
+          vData.normal = Vec3(0.0f, 0.0f, -1.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x + blockSize, y - blockSize,
@@ -83,6 +85,7 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.position = glm::vec3(x + blockSize, y + blockSize,
                                      z + blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          vData.normal = Vec3(0.0f, 1.0f, 0.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x + blockSize, y + blockSize,
@@ -114,6 +117,7 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.position = glm::vec3(x + blockSize, y - blockSize,
                                      z + blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          vData.normal = Vec3(0.0f, -1.0f, 0.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x + blockSize, y - blockSize,
@@ -145,6 +149,7 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.position = glm::vec3(x - blockSize, y - blockSize,
                                      z + blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          vData.normal = Vec3(-1.0f, 0.0f, 0.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x - blockSize, y - blockSize,
@@ -172,10 +177,11 @@ void ProceduralMesh::GenerateChunk(std::shared_ptr<Mesh> &mesh,
           vData.textureCoordinate = glm::vec2(0.0f, 1.0f);
           mesh->AddVertexData(vData);
         }
-        {  // Left Face (x = 0.5)
+        {  // Right Face (x = 0.5)
           vData.position = glm::vec3(x + blockSize, y - blockSize,
                                      z + blockSize);  // Top right
           vData.textureCoordinate = glm::vec2(1.0f, 0.0f);
+          vData.normal = Vec3(1.0f, 0.0f, 0.0f);
           mesh->AddVertexData(vData);
 
           vData.position = glm::vec3(x + blockSize, y - blockSize,

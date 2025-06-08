@@ -6,5 +6,6 @@ class VertexData {
  public:
   Vec3 position;
   Vec2 textureCoordinate;
+  Vec3 normal;
 };
 }  // namespace VoxelEngine

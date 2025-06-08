@@ -29,6 +29,9 @@ void Mesh::SetupMesh() {
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData),
                         (void *)sizeof(Vec3));
   glEnableVertexAttribArray(1);
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData),
+                        (void *)(sizeof(Vec3) + sizeof(Vec2)));
+  glEnableVertexAttribArray(2);
 }
 
 void Mesh::ClearVertice() { vertices.clear(); }

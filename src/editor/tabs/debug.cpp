@@ -52,8 +52,8 @@ void Debug::Tick() {
     std::shared_ptr<VoxelEngine::Chunk> chunk =
         object->GetComponent<VoxelEngine::Chunk>();
     if (chunk != nullptr) {
-      VoxelEngine::Logger::Log(VoxelEngine::LogCategory::DEBUG,
-                               "Block disabled", "DisableBlock");
+      VoxelEngine::Logger::Log(VoxelEngine::LogCategory::DEBUG, "Block toggled",
+                               "ToggleBlock");
       chunk->SetBlockActiveState(0, 0, 0, !chunk->blocks[0][0][0].isActive);
     }
   }
