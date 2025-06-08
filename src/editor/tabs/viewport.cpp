@@ -1,12 +1,7 @@
-#include "glm/ext/quaternion_float.hpp"
-#include "glm/gtc/quaternion.hpp"
-#include "glm/trigonometric.hpp"
 #include "imgui_internal.h"
 #include "voxelengine/input_manager/input_manager.hpp"
 #include "voxelengine/input_manager/key_codes.hpp"
-#include "voxelengine/math/quaternion.hpp"
 #include "voxedit/tabs/viewport.hpp"
-#include <iostream>
 #include <memory>
 #include "ImGuizmo.h"
 #include "glm/ext/matrix_float4x4.hpp"
