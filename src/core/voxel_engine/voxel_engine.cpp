@@ -26,5 +26,3 @@ void Engine::Tick() {
   Renderer::framebuffer->Unbind();
   Renderer::Clear();
 }
-
-// TODO: add glfw keycode as our own constant

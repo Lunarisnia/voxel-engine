@@ -13,6 +13,7 @@ add_executable(${PROJECT_NAME}
 
 	# InputManager
 	core/input_manager/input_manager.cpp
+	core/input_manager/mouse_event.cpp
 
 	# Resource
 	core/resource/resource.cpp

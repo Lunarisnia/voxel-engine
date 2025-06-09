@@ -4,6 +4,7 @@
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/components/mesh.hpp"
 #include "voxelengine/framebuffer/framebuffer.hpp"
+#include "voxelengine/math/vec2.hpp"
 #include "voxelengine/renderbuffer/renderbuffer.hpp"
 #include "voxelengine/texture/texture.hpp"
 namespace VoxelEngine {
@@ -13,6 +14,8 @@ class Renderer {
   static void drawMesh(const std::shared_ptr<Mesh>& mesh);
 
  public:
+  static Vec2 viewportPosition;
+  static Vec2 viewportSize;
   static std::unique_ptr<Framebuffer> framebuffer;
   static std::unique_ptr<Renderbuffer> renderbuffer;
   static std::shared_ptr<Object> mainCamera;

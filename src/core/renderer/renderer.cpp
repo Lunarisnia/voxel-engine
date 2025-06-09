@@ -4,6 +4,7 @@
 #include <vector>
 #include "voxelengine/components/camera.hpp"
 #include "voxelengine/log/logger.hpp"
+#include "voxelengine/math/vec2.hpp"
 #include "voxelengine/object/object.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
 using namespace VoxelEngine;
@@ -13,6 +14,8 @@ std::vector<std::shared_ptr<Mesh>> Renderer::renderQueue;
 std::unique_ptr<Framebuffer> Renderer::framebuffer;
 std::shared_ptr<Texture> Renderer::renderTexture;
 std::unique_ptr<Renderbuffer> Renderer::renderbuffer;
+Vec2 Renderer::viewportSize = Vec2(0.0f);
+Vec2 Renderer::viewportPosition = Vec2(0.0f);
 
 void Renderer::Initialize() {
   int width = VoxelWindow::width;
@@ -79,8 +82,10 @@ void Renderer::Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 void Renderer::SetViewport(int bottomLeftX, int bottomLeftY, int width,
                            int height) {
-  VoxelEngine::VoxelWindow::width = width;
-  VoxelEngine::VoxelWindow::height = height;
+  VoxelWindow::width = width;
+  VoxelWindow::height = height;
+  viewportSize = Vec2(width, height);
+
   renderTexture->SetTexture(width, height, NULL);
   renderbuffer->Resize(width, height);
   glViewport(bottomLeftX, bottomLeftY, width, height);

@@ -2,9 +2,7 @@
 #include <format>
 #include <memory>
 #include "glm/ext/matrix_float4x4.hpp"
-#include "glm/ext/vector_float3.hpp"
 #include "imgui.h"
-#include "voxedit/tabs/viewport.hpp"
 #include "voxelengine/components/camera.hpp"
 #include "voxelengine/components/chunk.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
@@ -66,34 +64,17 @@ void Debug::Tick() {
   ImGui::Text("Mouse Coord: %.2f, %.2f",
               VoxelEngine::InputManager::mouse.position.x,
               VoxelEngine::InputManager::mouse.position.y);
-  float xPos =
-      VoxelEngine::InputManager::mouse.position.x - Viewport::position.x;
-  float yPos =
-      VoxelEngine::InputManager::mouse.position.y - Viewport::position.y;
+  float xPos = VoxelEngine::InputManager::mouse.position.x -
+               VoxelEngine::Renderer::viewportPosition.x;
+  float yPos = VoxelEngine::InputManager::mouse.position.y -
+               VoxelEngine::Renderer::viewportPosition.y;
 
   // Transforming screen space coord to world space
-  VoxelEngine::Vec2 ndcMouseCoord =
-      VoxelEngine::Vec2((xPos / Viewport::size.x) * 2.0f - 1.0f,
-                        (yPos / Viewport::size.y) * 2.0f - 1.0f);
-  std::shared_ptr<VoxelEngine::Camera> mainCamera =
-      VoxelEngine::Renderer::mainCamera->GetComponent<VoxelEngine::Camera>();
+  VoxelEngine::Vec3 wSpace = VoxelEngine::InputManager::mouse.ToWorldPosition();
 
-  glm::mat4 inv = glm::inverse(mainCamera->GetProjectionMatrix() *
-                               mainCamera->GetViewMatrix());
-  glm::vec4 wSpace =
-      inv * glm::vec4(ndcMouseCoord.x, -ndcMouseCoord.y, 0.5f, 1.0f);
-
-  // Perspective division
-  wSpace.w = 1.0 / wSpace.w;
-  wSpace.x *= wSpace.w;
-  wSpace.y *= wSpace.w;
-  wSpace.z *= wSpace.w;
-
-  if (xPos >= 0.0f && xPos <= Viewport::size.x && yPos >= 0.0f &&
-      yPos <= Viewport::size.y) {
+  if (xPos >= 0.0f && xPos <= VoxelEngine::Renderer::viewportSize.x &&
+      yPos >= 0.0f && yPos <= VoxelEngine::Renderer::viewportSize.y) {
     ImGui::Text("Scaled Mouse Coord: %.2f, %.2f", xPos, yPos);
-    ImGui::Text("NDC Mouse Coord: %.2f, %.2f", ndcMouseCoord.x,
-                -ndcMouseCoord.y);
     ImGui::Text("World Space \nMouse Coord: %.2f, %.2f, %.2f", wSpace.x,
                 wSpace.y, wSpace.z);
   }
