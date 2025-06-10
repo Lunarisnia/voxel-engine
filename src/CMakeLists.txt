@@ -30,6 +30,7 @@ add_executable(${PROJECT_NAME}
 	core/components/transform.cpp
 	core/components/camera.cpp
 	core/components/chunk.cpp
+	core/components/script.cpp
 
 	# Material
 	core/material/material.cpp
@@ -60,6 +61,9 @@ add_executable(${PROJECT_NAME}
 	# Texture
 	core/texture/texture.cpp
 
+	# Scripting engine
+	core/scripting_engine/scripting_engine.cpp
+
 	# framebuffer
 	core/framebuffer/framebuffer.cpp
 	core/renderbuffer/renderbuffer.cpp
@@ -89,8 +93,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 # imgui include
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/imgui)
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/ImGuizmo)
-# lua include
-target_include_directories(${PROJECT_NAME} PUBLIC vendor/lua/include)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/vendor/lua/include)
 
 # Link to vendor
 target_link_libraries(${PROJECT_NAME} vendor)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/vendor/lua/lib/liblua.a)
