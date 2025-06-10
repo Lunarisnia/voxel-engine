@@ -89,6 +89,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 # imgui include
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/imgui)
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/ImGuizmo)
+# lua include
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/lua/include)
 
 # Link to vendor
 target_link_libraries(${PROJECT_NAME} vendor)
