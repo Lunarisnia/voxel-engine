@@ -1,5 +1,6 @@
 #include "voxelengine/scripting_engine/scripting_engine.hpp"
 #include <string>
+#include "lua.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/path_builder/path_builder.hpp"
 using namespace VoxelEngine;
@@ -13,7 +14,7 @@ void ScriptingEngine::Initialize() {
 }
 
 int ScriptingEngine::LoadAndRun(const std::string &path) {
-  const std::string &codePath = PathBuilder::Join(path);
+  const std::string &codePath = buildPath(path);
 
   if (luaL_dofile(L, codePath.c_str())) {
     Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
@@ -23,9 +24,33 @@ int ScriptingEngine::LoadAndRun(const std::string &path) {
   return 0;
 }
 
+int ScriptingEngine::Load(const std::string &path) {
+  const std::string &codePath = buildPath(path);
+
+  if (luaL_loadfile(L, codePath.c_str())) {
+    Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
+                "ScriptingEngine::Load");
+    return 1;
+  }
+  return 0;
+}
+
+int ScriptingEngine::Run() { return Run(0, 0); }
+
+int ScriptingEngine::Run(int nargs, int nresults) {
+  if (lua_pcall(L, 0, 0, 0)) {
+    Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
+                "ScriptingEngine::Run");
+    return 1;
+  }
+
+  return 0;
+}
+
 void ScriptingEngine::Tick() {}
 
-ScriptingEngine::~ScriptingEngine() { lua_close(L); }
+std::string ScriptingEngine::buildPath(const std::string &path) {
+  return PathBuilder::Join(path);
+}
 
-// TODO: Load file function
-// TODO: Run file function
+ScriptingEngine::~ScriptingEngine() { lua_close(L); }
