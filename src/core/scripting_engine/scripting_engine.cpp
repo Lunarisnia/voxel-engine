@@ -3,6 +3,7 @@
 #include "lua.hpp"
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/path_builder/path_builder.hpp"
+#include "voxelengine/scripting_engine/lua_function.hpp"
 using namespace VoxelEngine;
 
 lua_State *ScriptingEngine::L = nullptr;
@@ -38,7 +39,7 @@ int ScriptingEngine::Load(const std::string &path) {
 int ScriptingEngine::Run() { return Run(0, 0); }
 
 int ScriptingEngine::Run(int nargs, int nresults) {
-  if (lua_pcall(L, 0, 0, 0)) {
+  if (lua_pcall(L, nargs, nresults, 0)) {
     Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
                 "ScriptingEngine::Run");
     return 1;
@@ -47,10 +48,21 @@ int ScriptingEngine::Run(int nargs, int nresults) {
   return 0;
 }
 
+// TODO: Think of a way to handle the error
+LuaFunction ScriptingEngine::Function(const std::string &name) {
+  return LuaFunction(name);
+}
+
 void ScriptingEngine::Tick() {}
 
 std::string ScriptingEngine::buildPath(const std::string &path) {
   return PathBuilder::Join(path);
+}
+
+void ScriptingEngine::ShowLastItemTypeOnStack() {
+  int type = lua_type(L, -1);
+  Logger::Log(LogCategory::DEBUG, lua_typename(L, type),
+              "ScritingEngine::ShowLastItemTypeOnStack");
 }
 
 ScriptingEngine::~ScriptingEngine() { lua_close(L); }

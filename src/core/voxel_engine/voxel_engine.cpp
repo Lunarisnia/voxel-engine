@@ -16,10 +16,15 @@ void Engine::Initialize(int width, int height, const char *title) {
   World::Initialize();
   ScriptingEngine::Initialize();
   // TODO: Remove this
-  // ScriptingEngine::LoadAndRun("/build/debug/test.lua");
+  ScriptingEngine::LoadAndRun("/build/debug/test.lua");
   ScriptingEngine::LoadAndRun("/build/debug/test2.lua");
-  ScriptingEngine::CallFunction("Foo", "name");
+  LuaFunction l = ScriptingEngine::Function("Foo");
+  l.AddParamString("Hellllll")->Execute();
+
+  /*ScriptingEngine::CallFunction("Foo", "name");*/
 }
+// TODO: Research if lua has namespace or object to separate function with the
+// same name
 
 void Engine::Tick() {
   VoxelWindow::PollEvent();

@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
 #include "lua.hpp"
-#include "voxelengine/log/logger.hpp"
+#include "voxelengine/scripting_engine/lua_function.hpp"
 namespace VoxelEngine {
 class ScriptingEngine {
+  friend LuaFunction;
+
  private:
   static lua_State *L;
 
@@ -12,9 +14,9 @@ class ScriptingEngine {
 
  public:
   static void Initialize();
-  template <typename... Parameter, typename... ReturnTarget>
-  static int CallFunction(const std::string &name, Parameter... params,
-                          ReturnTarget &...returnTargets);
+  static LuaFunction Function(const std::string &name);
+
+  static void ShowLastItemTypeOnStack();
 
   static int LoadAndRun(const std::string &path);
   static int Load(const std::string &path);
@@ -28,18 +30,5 @@ class ScriptingEngine {
   inline ScriptingEngine() {};
   ~ScriptingEngine();
 };
-
-template <typename... Parameter, typename... ReturnTarget>
-int ScriptingEngine::CallFunction(const std::string &name, Parameter... params,
-                                  ReturnTarget &...returnTargets) {
-  lua_getglobal(L, name.c_str());
-  if (!lua_isfunction(L, -1)) {
-    Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
-                "ScriptingEngine::CallFunction");
-    return 1;
-  }
-
-  return 0;
-}
 
 };  // namespace VoxelEngine

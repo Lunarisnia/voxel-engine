@@ -20,4 +20,8 @@ void Logger::Log(LogCategory logCategory, const std::string &message,
             << context << "]: " << message << std::endl;
 }
 
+void Logger::Debug(const std::string &message) {
+  Log(LogCategory::DEBUG, message, "Logger::Debug");
+}
+
 // TODO: add system to allow logging into files

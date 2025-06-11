@@ -66,6 +66,7 @@ add_executable(${PROJECT_NAME}
 
 	# Scripting engine
 	core/scripting_engine/scripting_engine.cpp
+	core/scripting_engine/lua_function.cpp
 
 	# framebuffer
 	core/framebuffer/framebuffer.cpp
