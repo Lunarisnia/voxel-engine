@@ -1,6 +1,7 @@
 #include "voxelengine/scripting_engine/scripting_engine.hpp"
 #include <string>
 #include "voxelengine/log/logger.hpp"
+#include "voxelengine/path_builder/path_builder.hpp"
 using namespace VoxelEngine;
 
 lua_State *ScriptingEngine::L = nullptr;
@@ -12,12 +13,9 @@ void ScriptingEngine::Initialize() {
 }
 
 int ScriptingEngine::LoadAndRun(const std::string &path) {
-  if (luaL_dostring(L, "print(os.getenv('PWD'))")) {
-    Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
-                "ScriptingEngine::LoadAndRun");
-    return 1;
-  }
-  if (luaL_dofile(L, path.c_str())) {
+  const std::string &codePath = PathBuilder::Join(path);
+
+  if (luaL_dofile(L, codePath.c_str())) {
     Logger::Log(LogCategory::ERROR, lua_tostring(L, -1),
                 "ScriptingEngine::LoadAndRun");
     return 1;
@@ -28,3 +26,6 @@ int ScriptingEngine::LoadAndRun(const std::string &path) {
 void ScriptingEngine::Tick() {}
 
 ScriptingEngine::~ScriptingEngine() { lua_close(L); }
+
+// TODO: Load file function
+// TODO: Run file function

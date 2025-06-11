@@ -15,7 +15,8 @@ void Engine::Initialize(int width, int height, const char *title) {
   Renderer::Initialize();
   World::Initialize();
   ScriptingEngine::Initialize();
-  ScriptingEngine::LoadAndRun("./build/debug/test.lua");
+  // TODO: Remove this
+  ScriptingEngine::LoadAndRun("/build/debug/test.lua");
 }
 
 void Engine::Tick() {

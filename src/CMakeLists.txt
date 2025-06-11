@@ -49,6 +49,9 @@ add_executable(${PROJECT_NAME}
 	core/utilities/procedural_mesh.cpp
 	core/utilities/procedural_world.cpp
 
+	# path builder
+	core/path_builder/path_builder.cpp
+
 	# World
 	core/world/world.cpp
 
