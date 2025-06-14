@@ -7,7 +7,18 @@ LuaFunction::LuaFunction(const std::string &name) {
   lua_getglobal(ScriptingEngine::L, name.c_str());
   if (!lua_isfunction(ScriptingEngine::L, -1)) {
     Logger::Log(LogCategory::ERROR, lua_tostring(ScriptingEngine::L, -1),
-                "ScriptingEngine::CallFunction");
+                "LuaFunction::LuaFunction");
+  }
+}
+
+// TODO: Create a LuaTable class and tie it to LuaFunction
+LuaFunction::LuaFunction(const std::string &name,
+                         const std::string &tableName) {
+  lua_getglobal(ScriptingEngine::L, tableName.c_str());
+  lua_getfield(ScriptingEngine::L, -1, name.c_str());
+  if (!lua_isfunction(ScriptingEngine::L, -1)) {
+    Logger::Log(LogCategory::ERROR, lua_tostring(ScriptingEngine::L, -1),
+                "LuaFunction::LuaFunction");
   }
 }
 

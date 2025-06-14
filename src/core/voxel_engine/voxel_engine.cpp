@@ -18,7 +18,7 @@ void Engine::Initialize(int width, int height, const char *title) {
   // TODO: Remove this
   ScriptingEngine::LoadAndRun("/build/debug/test.lua");
   ScriptingEngine::LoadAndRun("/build/debug/test2.lua");
-  LuaFunction l = ScriptingEngine::Function("Foo");
+  LuaFunction l = LuaFunction("Foo", "Account");
   l.AddParamString("Hellllll")->Execute();
 
   /*ScriptingEngine::CallFunction("Foo", "name");*/

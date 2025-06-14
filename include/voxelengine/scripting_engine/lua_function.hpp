@@ -18,5 +18,6 @@ class LuaFunction {
 
  public:
   LuaFunction(const std::string &name);
+  LuaFunction(const std::string &name, const std::string &tableName);
 };
 };  // namespace VoxelEngine
