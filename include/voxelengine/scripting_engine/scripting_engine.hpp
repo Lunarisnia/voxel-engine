@@ -2,9 +2,11 @@
 #include <string>
 #include "lua.hpp"
 #include "voxelengine/scripting_engine/lua_function.hpp"
+#include "voxelengine/scripting_engine/lua_table.hpp"
 namespace VoxelEngine {
 class ScriptingEngine {
   friend LuaFunction;
+  friend LuaTable;
 
  private:
   static lua_State *L;
@@ -14,6 +16,7 @@ class ScriptingEngine {
 
  public:
   static void Initialize();
+  static LuaTable Table(const std::string &name);
   static LuaFunction Function(const std::string &name);
 
   static void ShowLastItemTypeOnStack();

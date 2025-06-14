@@ -2,6 +2,8 @@
 #include "voxelengine/engine.hpp"
 #include "voxelengine/renderer/renderer.hpp"
 #include "voxelengine/input_manager/input_manager.hpp"
+#include "voxelengine/scripting_engine/lua_function.hpp"
+#include "voxelengine/scripting_engine/lua_table.hpp"
 #include "voxelengine/scripting_engine/scripting_engine.hpp"
 #include "voxelengine/time/time.hpp"
 #include "voxelengine/voxel_window/voxel_window.hpp"
@@ -18,13 +20,12 @@ void Engine::Initialize(int width, int height, const char *title) {
   // TODO: Remove this
   ScriptingEngine::LoadAndRun("/build/debug/test.lua");
   ScriptingEngine::LoadAndRun("/build/debug/test2.lua");
-  LuaFunction l = LuaFunction("Foo", "Account");
+  LuaTable t = ScriptingEngine::Table("Animal");
+  LuaFunction l = t.Function("Foo");
   l.AddParamString("Hellllll")->Execute();
 
   /*ScriptingEngine::CallFunction("Foo", "name");*/
 }
-// TODO: Research if lua has namespace or object to separate function with the
-// same name
 
 void Engine::Tick() {
   VoxelWindow::PollEvent();

@@ -4,6 +4,7 @@
 #include "voxelengine/log/logger.hpp"
 #include "voxelengine/path_builder/path_builder.hpp"
 #include "voxelengine/scripting_engine/lua_function.hpp"
+#include "voxelengine/scripting_engine/lua_table.hpp"
 using namespace VoxelEngine;
 
 lua_State *ScriptingEngine::L = nullptr;
@@ -46,6 +47,10 @@ int ScriptingEngine::Run(int nargs, int nresults) {
   }
 
   return 0;
+}
+
+LuaTable ScriptingEngine::Table(const std::string &name) {
+  return LuaTable(name);
 }
 
 // TODO: Think of a way to handle the error
