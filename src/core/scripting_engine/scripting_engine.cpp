@@ -71,3 +71,15 @@ void ScriptingEngine::ShowLastItemTypeOnStack() {
 }
 
 ScriptingEngine::~ScriptingEngine() { lua_close(L); }
+
+// TODO: I think I need to make some map to keep track which script has been
+// loaded to avoid loading the same script twice If there were 2 object using
+// the same script they all would just use the same loaded script with different
+// parameters
+// TODO: Create a system to make sure the change to the object data in the
+// script reflect what happens in the core and vice versa
+// ============================================================================
+// TODO: Design a scripting template for how all the script should look like
+// TODO: Find a way to attach the script to an object
+// TODO: Create a system where the script will have an init and a update
+// function that gets called accordingly
